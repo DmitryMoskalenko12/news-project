@@ -15,6 +15,25 @@ import { useState } from 'react';
 
 const Header = () =>{
   const [menu, setMenu] = useState(false);
+  const [button, setButton] = useState([
+    {content: 'війна', href: '#', id: 1 },
+    {content: 'новини', href: '#', id: 2 },
+    {content: 'політика', href: '#', id: 3 },
+    {content: 'економіка', href: '#', id: 4 },
+    {content: 'суспільство', href: '#', id: 5 },
+    {content: 'погляди', href: '#', id: 6 },
+    {content: 'світ', href: '#', id: 7 }
+  ]);
+  const [stata, setStata] = useState([
+    {src: air, alt: 'air', descr: 'особовий склад', num:'~36 200', id: 1 },
+    {src: tanks, alt: 'tanks', descr: 'танки', num:'1 589', id: 2 },
+    {src: art, alt: 'art', descr: 'артсистеми', num:'4578', id: 3 },
+    {src: air, alt: 'air', descr: 'літаки', num:'220', id: 4 },
+    {src: rocket, alt: 'rocket', descr: 'РСЗВ', num:'246', id: 5 },
+    {src: gelic, alt: 'gelic', descr: 'гелікоптери', num:'190', id: 6 },
+    {src: bbm, alt: 'bbm', descr: 'ББМ', num:'4578', id: 7 }
+  ])
+  const [active, setActive] = useState(1)
 
   return(
     <header className="header">
@@ -66,13 +85,13 @@ const Header = () =>{
       <nav className="header__navig">
 
         <ul className="header__listmenu">
-          <li className='header__li'><a href="#">війна</a></li>
-          <li className='header__li'><a href="#">новини</a></li>
-          <li className='header__li'><a href="#">політика</a></li>
-          <li className='header__li'><a href="#">економіка</a></li>
-          <li className='header__li activeli'><a href="#">суспільство</a></li>
-          <li className='header__li'><a href="#">погляди</a></li>
-          <li className='header__li'><a href="#">світ</a></li>
+          {
+            button.map(({content, href, id}, i) => {
+              return(
+                <li  key={id} onClick={() => setActive(id)} className={`header__li ${active === i + 1 ? 'activeli' : null}`}><a href={href}>{content}</a></li>
+              )
+            })
+          }
         </ul>
 
         <div className="header__live activelive">
@@ -84,14 +103,14 @@ const Header = () =>{
      <div className="header__statistic">
         <div className="container">
             <ul className="header__statlist">
-              <li className="header__listat">131 день війни:</li>
-              <li className="header__listat"><div><img src={air} alt="air" /></div> особовий склад <span>~36 200</span></li>
-              <li className="header__listat"><div><img src={tanks} alt="tanks" /></div> танки <span>1 589</span></li>
-              <li className="header__listat"><div><img src={art} alt="art" /></div> артсистеми <span>4578</span></li>
-              <li className="header__listat"><div><img src={air} alt="air" /></div> літаки <span>220</span></li>
-              <li className="header__listat"><div><img src={rocket} alt="rocket" /></div> РСЗВ <span>246</span></li>
-              <li className="header__listat"><div><img src={gelic} alt="gelic" /></div> гелікоптери <span>190</span></li>
-              <li className="header__listat"><div><img src={bbm} alt="bbm" /></div> ББМ <span>4578</span></li>
+            <li className="header__listat">131 день війни:</li>
+              {
+                stata.map(({src, alt, descr, num, id}) => {
+               return(
+                <li key={id} className="header__listat"><div><img src={src} alt={alt} /></div> {descr} <span>{num}</span></li>
+              )
+                })
+              }
             </ul>
           </div>
       </div>

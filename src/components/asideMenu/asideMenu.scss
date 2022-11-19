@@ -1,5 +1,5 @@
 .asidemenu {
-  position: absolute;
+  position: fixed;
   width: 250px;
   height: 100vh;
   background: #121B30;
@@ -7,6 +7,7 @@
   opacity: 100;
   transition: 0.5s;
   left: -100%;
+  z-index: 100000;
   &__close {
     position: absolute;
     color: white;
