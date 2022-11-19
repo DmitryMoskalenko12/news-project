@@ -1,58 +1,18 @@
 import './sectionSlider.scss';
-import slide1 from '../../image/slide1.png';
-import subslide1 from '../../image/subslide1.png';
-import slide2 from '../../image/slide2.png';
-import slide3 from '../../image/slide3.png';
-import slide4 from '../../image/slide4.jpg';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useSlider } from '../../hooks/useSlider';
+import { useHttp } from '../../hooks/http.hook';
 
 const SectionSlider = () => {
-const [slideIndex, setSlideIndex] = useState(1);
-const [offset, setOffset] = useState(0);
-const [width, setWidth] = useState(1350);
-const [subBlock, setSubBlock] = useState([
-  {src: subslide1, descr: 'Андрій Єрмак: «В нас інші прізвища, ніж у творців Мінських угод. Людей, які б...', alt: 'slide1'},
-  {src: slide2, descr: 'Оприлюднено супутникові знімки аеродрому біля Новофедорівки: видно місця ураження', alt: 'slide2' },
-  {src: slide3, descr: 'Вибухи на білоруському аеродромі "Зябрівка": оприлюднені причини', alt: 'slide3'},
-  {src: slide4, descr: 'Сейм Латвії визнав рф країною-спонсором тероризму', alt: 'slide4'},
-])
-const [sliders, setSliders] = useState([
-  {src: slide1, descr: 'Андрій Єрмак: «В нас інші прізвища, ніж у творців Мінських угод. Людей, які б...', alt: 'slide1'},
-  {src: slide2, descr: 'Оприлюднено супутникові знімки аеродрому біля Новофедорівки: видно місця ураження', alt: 'slide2' },
-  {src: slide3, descr: 'Вибухи на білоруському аеродромі "Зябрівка": оприлюднені причини', alt: 'slide3'},
-  {src: slide4, descr: 'Сейм Латвії визнав рф країною-спонсором тероризму', alt: 'slide4'}
-])
-
-const onNext = () => {
-  if (offset == width * (sliders.length - 1)) {
-    setOffset(0)
-  } else {
-    setOffset( offset => offset += width)
-  }
-
-
-  if (slideIndex == sliders.length) {
-    setSlideIndex(1)
-  }else{
-    setSlideIndex(slideIndex => slideIndex + 1)
-  }
-
-}
-
-const onPrev = () => {
-  if (offset == 0) {
-    setOffset(width * (sliders.length - 1))
-  } else {
-    setOffset( offset => offset -= width)
-  }
-
-  if (slideIndex == 1) {
-    setSlideIndex(sliders.length)
-  }else{
-    setSlideIndex(slideIndex => slideIndex - 1)
-  }
-
-}
+  const {request} = useHttp();
+  
+  useEffect(() => {
+  request('http://localhost:3001/sliderData')
+   .then((res) => setSliders(res))
+   .catch((e) => console.log(e))
+  },[])
+  
+  const {onNext, onPrev, slideIndex, setSlideIndex, setOffset, offset, width, sliders, setSliders} = useSlider(1, 0, 1350)
 
   return(
     <div className='slider'>
@@ -87,9 +47,9 @@ const onPrev = () => {
 
          <div className="slider__subtem">
          {
-          subBlock.map(({src, descr, alt}, i) => {
+          sliders.map(({src, descr, alt}, i) => {
             return(
-              <div key = {i}  style={{border: slideIndex === i + 1 ? '1px solid red': null}} onClick={() => {setSlideIndex(i + 1); setOffset(width * i)} } className="slider__blockthem">
+              <div key = {i}  style={{border: slideIndex === i + 1 ? '1px solid #FF7534': null}} onClick={() => {setSlideIndex(i + 1); setOffset(width * i)} } className="slider__blockthem">
                 <div className="slider__wrapimg">
                 <img src={src} alt={alt} />
               </div>
