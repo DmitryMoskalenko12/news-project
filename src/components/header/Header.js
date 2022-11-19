@@ -10,14 +10,18 @@ import rocket from '../../icons/rocket.png';
 import art from '../../icons/art.png';
 import bbm from '../../icons/bbm.png';
 import air from '../../icons/air.png';
+import AsideMenu from '../asideMenu/AsideMenu';
+import { useState } from 'react';
 
 const Header = () =>{
+  const [menu, setMenu] = useState(false);
+
   return(
     <header className="header">
      <div className="container">
       <div className="header__top">
 
-        <div className="header__burgmenu">
+        <div onClick={() => setMenu(true)} className="header__burgmenu">
           <div className="header__lines">
             <span className="header__first"></span>
             <span className="header__second"></span>
@@ -75,6 +79,7 @@ const Header = () =>{
          LIVE
         </div>
       </nav>
+
      </div>
      <div className="header__statistic">
         <div className="container">
@@ -90,6 +95,9 @@ const Header = () =>{
             </ul>
           </div>
       </div>
+      {
+        <AsideMenu menu = {menu} setMenu = {setMenu}/>
+      } 
     </header>
   )
 }

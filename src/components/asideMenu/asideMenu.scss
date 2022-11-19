@@ -1,0 +1,48 @@
+.asidemenu {
+  position: absolute;
+  width: 250px;
+  height: 100vh;
+  background: #121B30;
+  top: 0;
+  opacity: 100;
+  transition: 0.5s;
+  left: -100%;
+  &__close {
+    position: absolute;
+    color: white;
+    font-weight: 400;
+    font-size: 40px;
+    right: 10px;
+    top: 0;
+    cursor: pointer;
+  }
+  &__menu {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+    li {
+      a {
+        display: block;
+        font-weight: 600;
+        font-size: 14px;
+        text-transform: uppercase;
+        color: white;
+        text-decoration: none;
+        margin-top: 30px;
+        }
+    }
+  }
+}
+.activeasidemenu {
+  width: 250px;
+  height: 100vh;
+  background: #121B30;
+  top: 0;
+  opacity: 100;
+  transition: 0.5s all;
+  left:0;
+}
