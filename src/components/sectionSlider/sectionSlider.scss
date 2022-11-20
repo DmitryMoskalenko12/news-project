@@ -52,6 +52,10 @@
     align-items: center;
     color:#FFFFFF;
     cursor: pointer;
+    opacity: 0.5;
+    &:hover {
+      opacity: 1
+    }
   }
   &__subtem {
     position: absolute;

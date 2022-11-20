@@ -34,7 +34,7 @@ const SectionSlider = () => {
 
         <div className="slider__trigwrap">
 
-            <div onClick={() => onPrev()} style={{color: '#FFFFFF', opacity: '0.5'}} className="slider__prev">
+            <div onClick={() => onPrev()} className="slider__prev">
               &lt;
             </div>
             <div style={{color: '#FFFFFF'}}  className="slider__current">{slideIndex}</div>

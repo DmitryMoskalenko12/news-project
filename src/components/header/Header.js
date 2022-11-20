@@ -4,36 +4,29 @@ import telega from '../../icons/Telegram.png';
 import faceb from '../../icons/Facebook.png';
 import insta from '../../icons/Instagram.png';
 import yout from '../../icons/You.png';
-import tanks from '../../icons/tanks.png';
-import gelic from '../../icons/gelic.png';
-import rocket from '../../icons/rocket.png';
-import art from '../../icons/art.png';
-import bbm from '../../icons/bbm.png';
-import air from '../../icons/air.png';
 import AsideMenu from '../asideMenu/AsideMenu';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useHttp } from '../../hooks/http.hook';
 
 const Header = () =>{
+  
   const [menu, setMenu] = useState(false);
-  const [button, setButton] = useState([
-    {content: 'війна', href: '#', id: 1 },
-    {content: 'новини', href: '#', id: 2 },
-    {content: 'політика', href: '#', id: 3 },
-    {content: 'економіка', href: '#', id: 4 },
-    {content: 'суспільство', href: '#', id: 5 },
-    {content: 'погляди', href: '#', id: 6 },
-    {content: 'світ', href: '#', id: 7 }
-  ]);
-  const [stata, setStata] = useState([
-    {src: air, alt: 'air', descr: 'особовий склад', num:'~36 200', id: 1 },
-    {src: tanks, alt: 'tanks', descr: 'танки', num:'1 589', id: 2 },
-    {src: art, alt: 'art', descr: 'артсистеми', num:'4578', id: 3 },
-    {src: air, alt: 'air', descr: 'літаки', num:'220', id: 4 },
-    {src: rocket, alt: 'rocket', descr: 'РСЗВ', num:'246', id: 5 },
-    {src: gelic, alt: 'gelic', descr: 'гелікоптери', num:'190', id: 6 },
-    {src: bbm, alt: 'bbm', descr: 'ББМ', num:'4578', id: 7 }
-  ])
+  const [button, setButton] = useState([]);
+  const [stata, setStata] = useState([])
   const [active, setActive] = useState(1)
+  const {request} = useHttp();
+
+  useEffect(() => {
+  request('http://localhost:3001/statistic')
+  .then((res) => setStata(res))
+  .catch((e) => console.log(e))
+  },[])
+
+  useEffect(() => {
+  request('http://localhost:3001/button')
+  .then((res) => setButton(res))
+  .catch((e) => console.log(e))
+  },[])
 
   return(
     <header className="header">
