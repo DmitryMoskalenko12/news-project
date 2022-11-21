@@ -1,6 +1,7 @@
 import './newsSection.scss';
 import { useState, useEffect, useMemo } from 'react';
 import useNewsService from '../../services/NewsService';
+import circle from '../../icons/circle.png';
 
 const NewsSection = () => {
   const [choicebut, setChoiceBut] = useState([
@@ -18,13 +19,17 @@ const NewsSection = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [active, setActive] = useState(1);
-
+  const [ended, setEnded] = useState(false);
   const {getAllNews, getArticl, getNews} = useNewsService()
 
 const setDataNewsAll = () => {
+
     setLoading(true)
     getAllNews(limit, page)
     .then((res) => {
+      if (res.length < 10) {
+        setEnded(true)
+      }
       setAllNews([...allnews, ...res]);
       setLoading(false)
     })
@@ -71,7 +76,6 @@ const setDataNews = () => {
  return result()
  }, [filter, allnews, articl, news])
 
- const spiner = loading ? '...Завантаження': null;
  const fail = error ? '...Помилка завантаження': null;
 
   return(
@@ -106,9 +110,8 @@ const setDataNews = () => {
               )
             })
           }
-          {spiner}
           {fail}
-          <li onClick={() => {setPage(page => page + 1)}} className="news__load">Завантажити ще</li>
+          <li style ={{display: ended ? 'none' : null}} onClick={() => {setPage(page => page + 1)}} className={`news__load`}><img className={`news__circle ${loading ? 'rotate' : null}`} src={circle} alt="circle" />Завантажити ще</li>
          </ul>
 
         </aside>
