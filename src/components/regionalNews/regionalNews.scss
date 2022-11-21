@@ -1,0 +1,107 @@
+.regional {
+  min-height: 691px;
+  &__contentwrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 32px;
+  }
+  &__titlewrap {
+    width: 810px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 42px;
+  }
+  &__region {
+    font-weight: 700;
+    font-size: 32px;
+    color: #2D2D2D;
+  }
+  &__allregionnews {
+    a {
+      font-weight: 600;
+      font-size: 14px;
+      color: #FF7534;
+      text-decoration: none;
+    }
+  }
+  &__townblock {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 16px 16px 10px;
+    width: 260px;
+   /*  min- */height: 691px;
+    background: #FFFFFF;
+    border-radius: 12px;
+  }
+  &__towntitle {
+    font-weight: 600;
+    font-size: 24px;
+    color: #2D2D2D;
+  }
+  &__subdate {
+    font-weight: 400;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #F3560C;
+    margin-top: 24px;
+    margin-bottom: 12px;
+  }
+  &__townsub {
+    min-height: 82px;
+    a {
+      text-decoration: none;
+    }
+  }
+  &__newsdescr {
+    font-weight: 500;
+    font-size: 16px;
+    color: #182840;
+    span {
+      font-weight: 400;
+      font-size: 14px;
+      color: #707070;
+      margin-right: 3px;
+    }
+  }
+  &__butwrap {
+    position: sticky;
+    width: 146px;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    a {
+      text-decoration: none;
+    }
+
+  }
+
+  &__morenews {
+    position: relative;
+    font-weight: 500;
+    font-size: 16px;
+    color: #182840;
+     span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 30px;
+      height: 30px;
+      border: 1px solid #919191;
+      border-radius: 100%;
+      position: absolute;
+      top: -3px;
+      right: -44px;
+      &:hover {
+        background: #919191;
+      }
+      img {
+        object-fit: cover;
+      }
+     }
+  }
+}

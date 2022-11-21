@@ -1,7 +1,16 @@
 import axios from "axios";
 
 const useNewsService = () => {
-  
+  const getRegionNews = async () =>{
+    const result = await axios.get(`http://localhost:3001/regionNews`)
+    return result.data.map(_dataRegionNewsTransform) 
+   }
+
+  const getRedaction = async () =>{
+    const result = await axios.get(`http://localhost:3001/redactionNews`)
+    return result.data.map(_dataRedactionTransform) 
+   }
+
   const getNews = async (limit, page) =>{
    const result = await axios.get(`http://localhost:3001/news?_limit=${limit}&_page=${page}`)
    return result.data.map(_dataNewsTransform) 
@@ -17,6 +26,24 @@ const useNewsService = () => {
    
    return result.data.map(_dataTransform) 
   
+  }
+  const _dataRedactionTransform = (res) => {
+    return {
+      content: res.content,
+      src: res.src,
+      date: res.date,
+      id: res.id
+    }
+  }
+  const _dataRegionNewsTransform = (res) => {
+    return {
+      town: res.town,
+      subdate: res.subdate,
+      subdate2: res.subdate2,
+      content: res.content,
+      src: res.src,
+      id: res.id
+    }
   }
   const _dataArticlTransform = (res) =>{
     return {
@@ -42,7 +69,9 @@ const useNewsService = () => {
   return{
     getAllNews,
     getArticl,
-    getNews
+    getNews,
+    getRedaction,
+    getRegionNews
   }
 }
 export default useNewsService;
