@@ -15,11 +15,16 @@ const NewsSection = () => {
   const [articl, setArticl] = useState([]);
   const [news, setNews] = useState([]);
   const [page, setPage] = useState(1);
+  const [pagearticl, setPageArticl] = useState(1);
+  const [pageNews, setPageNews] = useState(1);
   const [limit, setLimit] = useState(10);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [active, setActive] = useState(1);
   const [ended, setEnded] = useState(false);
+  const [endednews, setEndedNews] = useState(false);
+  const [endedarticl, setEndedArticl] = useState(false);
+  
   const {getAllNews, getArticl, getNews} = useNewsService()
 
 const setDataNewsAll = () => {
@@ -37,8 +42,11 @@ const setDataNewsAll = () => {
 }
 const setDataArticl = () => {
     setLoading(true)
-    getArticl(limit, page)
+    getArticl(limit, pagearticl)
     .then((res) => {
+      if (res.length < 10) {
+        setEndedArticl(true)
+      }
       setArticl([...articl, ...res]);
       setLoading(false);
     })
@@ -46,8 +54,11 @@ const setDataArticl = () => {
 }
 const setDataNews = () => {
     setLoading(true)
-    getNews(limit, page)
+    getNews(limit, pageNews)
     .then((res) => {
+      if (res.length < 10) {
+        setEndedNews(true)
+      }
       setNews([...news, ...res]);
       setLoading(false);
     })
@@ -55,15 +66,21 @@ const setDataNews = () => {
 }
 
   useEffect(() => {
-    setDataNewsAll();
-    setDataArticl();
     setDataNews();
+  },[pageNews])
+
+  useEffect(() => {
+    setDataArticl();
+  },[pagearticl])
+
+  useEffect(() => {
+    setDataNewsAll()
   },[page])
 
  const result = () => {
   switch (filter) {
     case 'Всі':
-      return allnews
+      return  allnews
     case 'Новини':
       return news
     case 'Статті':
@@ -78,6 +95,46 @@ const setDataNews = () => {
 
  const fail = error ? '...Помилка завантаження': null;
 
+const differentPage = () => {
+if (filter === 'Всі') {
+  setPage(page => page + 1)
+} else if( filter === 'Новини'){
+  setPageNews(pageNews => pageNews + 1)
+} else if(filter === 'Статті'){
+  setPageArticl(pagearticl => pagearticl + 1)
+}
+}
+
+const liNews = filter === 'Новини' ?  <li 
+                                      style ={{display: endednews ? 'none' : 'block'}} 
+                                      onClick={() => differentPage()}
+                                      className={`news__load`}>
+                                      <img 
+                                      className={`news__circle ${loading ? 'rotate' : null}`} 
+                                      src={circle} 
+                                      alt="circle" />
+                                      Завантажити ще
+                                      </li>  : null
+  const liAllNews = filter === 'Всі' ?  <li 
+                                      style ={{display: ended ? 'none' : 'block'}} 
+                                      onClick={() => differentPage()}
+                                      className={`news__load`}>
+                                      <img 
+                                      className={`news__circle ${loading ? 'rotate' : null}`} 
+                                      src={circle} 
+                                      alt="circle" />
+                                      Завантажити ще
+                                      </li>  : null  
+  const liArticl = filter === 'Статті' ?  <li 
+                                      style ={{display: endedarticl ? 'none' : 'block'}} 
+                                      onClick={() => differentPage()}
+                                      className={`news__load`}>
+                                      <img 
+                                      className={`news__circle ${loading ? 'rotate' : null}`} 
+                                      src={circle} 
+                                      alt="circle" />
+                                      Завантажити ще
+                                      </li>  : null 
   return(
     <section className="news">
       <div className="container">
@@ -111,7 +168,9 @@ const setDataNews = () => {
             })
           }
           {fail}
-          <li style ={{display: ended ? 'none' : null}} onClick={() => {setPage(page => page + 1)}} className={`news__load`}><img className={`news__circle ${loading ? 'rotate' : null}`} src={circle} alt="circle" />Завантажити ще</li>
+          {liNews}
+          {liAllNews}
+          {liArticl}
          </ul>
 
         </aside>
