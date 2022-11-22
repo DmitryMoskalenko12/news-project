@@ -1,81 +1,37 @@
 import './newsSection.scss';
-import { useState, useEffect, useMemo } from 'react';
-import useNewsService from '../../services/NewsService';
+import { useMemo } from 'react';
 import circle from '../../icons/circle.png';
 
-const NewsSection = () => {
-  const [choicebut, setChoiceBut] = useState([
-    {content: 'Всі', id: 1},
-    {content: 'Новини', id: 2},
-    {content: 'Статті', id: 3}
-  ])
-
-  const [filter, setFilter] = useState('Всі');
-  const [allnews, setAllNews] = useState([]);
-  const [articl, setArticl] = useState([]);
-  const [news, setNews] = useState([]);
-  const [page, setPage] = useState(1);
-  const [pagearticl, setPageArticl] = useState(1);
-  const [pageNews, setPageNews] = useState(1);
-  const [limit, setLimit] = useState(10);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [active, setActive] = useState(1);
-  const [ended, setEnded] = useState(false);
-  const [endednews, setEndedNews] = useState(false);
-  const [endedarticl, setEndedArticl] = useState(false);
-  
-  const {getAllNews, getArticl, getNews} = useNewsService()
-
-const setDataNewsAll = () => {
-
-    setLoading(true)
-    getAllNews(limit, page)
-    .then((res) => {
-      if (res.length < 10) {
-        setEnded(true)
-      }
-      setAllNews([...allnews, ...res]);
-      setLoading(false)
-    })
-    .catch(() => setError(true))
-}
-const setDataArticl = () => {
-    setLoading(true)
-    getArticl(limit, pagearticl)
-    .then((res) => {
-      if (res.length < 10) {
-        setEndedArticl(true)
-      }
-      setArticl([...articl, ...res]);
-      setLoading(false);
-    })
-    .catch(() => setError(true))
-}
-const setDataNews = () => {
-    setLoading(true)
-    getNews(limit, pageNews)
-    .then((res) => {
-      if (res.length < 10) {
-        setEndedNews(true)
-      }
-      setNews([...news, ...res]);
-      setLoading(false);
-    })
-    .catch(() => setError(true))
-}
-
-  useEffect(() => {
-    setDataNews();
-  },[pageNews])
-
-  useEffect(() => {
-    setDataArticl();
-  },[pagearticl])
-
-  useEffect(() => {
-    setDataNewsAll()
-  },[page])
+const NewsSection = ({
+  error,
+  setPageNews, 
+  setPageArticl, 
+  setPage,
+  choicebut,
+  filter,
+  setChoiceBut, 
+  endedarticl, 
+  endednews,
+  ended, 
+  setActive, 
+  active ,
+  setFilter, 
+  loading, 
+  limit, 
+  page ,
+  setLoading , 
+  setEnded, 
+  setAllNews,  
+  setError,  
+  allnews,  
+  pagearticl,  
+  setEndedArticl, 
+  setArticl, 
+  articl, 
+  pageNews ,
+  setEndedNews, 
+  setNews, 
+  news }) => {
 
  const result = () => {
   switch (filter) {

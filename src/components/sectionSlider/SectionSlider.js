@@ -1,18 +1,6 @@
 import './sectionSlider.scss';
-import { useEffect } from 'react';
-import { useSlider } from '../../hooks/useSlider';
-import { useHttp } from '../../hooks/http.hook';
 
-const SectionSlider = () => {
-  const {request} = useHttp();
-  
-  useEffect(() => {
-  request('http://localhost:3001/sliderData')
-   .then((res) => setSliders(res))
-   .catch((e) => console.log(e))
-  },[])
-  
-  const {onNext, onPrev, slideIndex, setSlideIndex, setOffset, offset, width, sliders, setSliders} = useSlider(1, 0, 1350)
+const SectionSlider = ({onNext, onPrev, slideIndex, setSlideIndex, setOffset, offset, width, sliders}) => {
 
   return(
     <div className='slider'>

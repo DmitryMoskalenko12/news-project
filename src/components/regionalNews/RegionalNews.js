@@ -1,16 +1,7 @@
 import './regionalNews.scss';
 import right from '../../icons/right.png';
-import useNewsService from '../../services/NewsService';
-import { useState, useEffect } from 'react';
 
-const RegionalNews = () => {
-  const {getRegionNews} = useNewsService();
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    getRegionNews()
-    .then((res) => setData(res))
-  },[])
+const RegionalNews = ({dataRegional}) => {
 
   return(
     <section className='regional'>
@@ -22,7 +13,7 @@ const RegionalNews = () => {
       <div className="regional__contentwrap">
 
       {
-        data.map(({ town, subdate, subdate2, content, src, id}) => {
+        dataRegional.map(({ town, subdate, subdate2, content, src, id}) => {
           return(
             <div key={id} className="regional__townblock">
             <div className="regional__towntitle">{town}</div>

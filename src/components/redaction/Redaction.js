@@ -1,15 +1,6 @@
 import './redaction.scss';
-import useNewsService from '../../services/NewsService';
-import { useState, useEffect } from 'react';
 
-const Redaction = () => {
-  const {getRedaction} = useNewsService();
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-      getRedaction()
-      .then((res) => setData(res))
-  },[])
+const Redaction = ({data}) => {
 
   return (
     <section className="redaction">
