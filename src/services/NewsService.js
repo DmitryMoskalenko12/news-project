@@ -2,6 +2,14 @@ import axios from "axios";
 
 const useNewsService = () => {
 
+  const getVideoNews = async () => {
+    const result = await axios.get('http://localhost:3001/videoNews')
+    return result.data
+  }
+  const getBigVideo = async () => {
+    const result = await axios.get('http://localhost:3001/bigVideo')
+    return result.data
+  }
   const getSliders = async () => {
    const result = await axios.get('http://localhost:3001/sliderData')
    return result.data
@@ -78,7 +86,9 @@ const useNewsService = () => {
     getNews,
     getRedaction,
     getRegionNews,
-    getSliders
+    getSliders,
+    getVideoNews,
+    getBigVideo
   }
 }
 export default useNewsService;

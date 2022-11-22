@@ -1,27 +1,48 @@
-import usik from '../../image/usik.png';
-import men from '../../image/men.png';
+import white from '../../icons/white.png'
+import './sectionVideo.scss';
 
-const SectionVideo = () => {
+const SectionVideo = ({bigVideo, videoData}) => {
+
   return(
     <section className="videonews">
+      <div className="videonews__overflow"></div>
       <div className="container">
-        <div className="videonews__wrap">
 
-          <div className="videonews__bigwr">
-           <div className="videonews__title">Відео</div>
-           <div className="video__videobig">
-            <a href="#"><img src={usik} alt="bigvideo" /></a>
-            <div className="videonews__date">05 серпня 11:00</div>
-            <div className="videonews__descr">"Це не Джошуа": Усик розповів, кого вважає своїм головним суперником</div>
-           </div>
-          </div>
-          
-          <div className="videonews__fourvideo">
-            <div className="video__item"><a href="#"><img src="" alt="men" /></a></div> 
-          </div>
+      <a className='videonews__link' href="#">Більше новин <span><img src={white} alt="arrow" /></span></a>
 
+      <div className="videonews__wrap">
 
-        </div>
+        {
+          bigVideo.map(({src, videodate, videodescr, id}) => {
+            return(
+              <div key={id} className="videonews__bigwrap">
+                <div className="videonews__title">Відео</div> 
+                <a className='videonews__bigvideo' href="#"><img src={src} alt="bigvideo" /></a>
+                <div className="videonews__date">{videodate}</div>
+                <a className="videonews__descr" href="#">{videodescr}</a>
+              </div>
+            )
+          })
+        }
+
+      <div className="videonews__fourvideo">
+    
+        {
+          videoData.map(({src, videodate, videodescr, id}) => {
+            return(
+              <div key={id} className="videonews__item">
+                <a className='videonews__linkimg' href="#"><img src={src} alt="men" /></a>
+                <div className="videonews__itemdate">{videodate}</div>
+                <a className='videonews__linkdesc' href="#"><div className="videonews__lessdescr">{videodescr}
+                </div>
+                </a>
+            </div>
+            )
+          })
+        }
+  </div>
+
+</div>
       </div>
     </section>
   )

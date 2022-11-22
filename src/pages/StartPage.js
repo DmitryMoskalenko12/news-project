@@ -7,6 +7,7 @@ import { useSlider } from '../hooks/useSlider';
 import useNewsService from '../services/NewsService';
 import { useEffect, useState} from 'react';
 import useAsideNewsPanel from '../hooks/useAsideNewsPanel';
+import SectionVideo from '../components/sectionVideo/SectionVideo';
 
 const StartPage = () => {
 
@@ -32,7 +33,7 @@ const StartPage = () => {
   const [endednews, setEndedNews] = useState(false);
   const [endedarticl, setEndedArticl] = useState(false);
 
-  const {getSliders, getRedaction, getRegionNews } = useNewsService();
+  const {getSliders, getRedaction, getRegionNews, getVideoNews, getBigVideo } = useNewsService();
   const {setDataNews, setDataArticl, setDataNewsAll} = useAsideNewsPanel(
     limit, 
     page, 
@@ -87,6 +88,20 @@ useEffect(() => {
   .then((res) => setDataRegional(res))
 },[])
 
+/* videonews */
+const [videoData, setVideoData] = useState([]);
+const [bigVideo, setBigVideo] = useState([]);
+
+useEffect(() => {
+  getVideoNews()
+  .then((res) => setVideoData(res))
+  .catch((e) => console.log(e))
+
+  getBigVideo()
+  .then((res) => setBigVideo(res))
+  .catch((e) => console.log(e))
+},[])
+
     return(
       <>
       <Header/>
@@ -127,7 +142,7 @@ useEffect(() => {
        <RegionalNews dataRegional = {dataRegional}/>
        </div>
       </div>
-
+      <SectionVideo videoData = {videoData} bigVideo = { bigVideo}/>
       
      </>
     )
