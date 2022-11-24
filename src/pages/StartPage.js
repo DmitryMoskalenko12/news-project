@@ -10,6 +10,7 @@ import useAsideNewsPanel from '../hooks/useAsideNewsPanel';
 import SectionVideo from '../components/sectionVideo/SectionVideo';
 import AuthorColon from '../components/authorColon/AuthorColon';
 import NewsBlock from '../components/newsBlock/NewsBlock';
+import Promo from '../components/promo/Promo';
 
 const StartPage = () => {
 
@@ -185,16 +186,14 @@ useEffect(() => {
       </div>
       <SectionVideo videoData = {videoData} bigVideo = { bigVideo}/>
       <section className="colpolit">
-        <div className="container">
           <div className="flextwosection">
           <AuthorColon authorData = {authorData} pageColon =  {pageColon} setPageColon = {setPageColon} authorEnded = {authorEnded} authorLoading = {authorLoading} authorError = {authorError}/>
           <NewsBlock block1 = {block1} block2 = {block2} twonews = {twonews}/>
           </div>
-       
-
-        </div>
       </section>
-      
+       <section className='promo'>
+         <Promo/>
+       </section>
 
      </>
     )

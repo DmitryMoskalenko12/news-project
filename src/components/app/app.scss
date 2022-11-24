@@ -17,4 +17,13 @@ body {
 }
 .flextwosection {
   display: flex;
+  justify-content: center;
+}
+.promo {
+  padding: 24px 64px 32px;
+  display: flex;
+  justify-content: right;
+  min-height: 409px;
+  border-radius: 12px;
+  background: #F7F7F7;
 }
