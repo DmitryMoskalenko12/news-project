@@ -1,21 +1,21 @@
 .slider {
   position: relative;
-  width: 1325px;
+  width: 1340px;
   height: 654px;
   &__field {
     display: flex;
   }
   &__item {
     position: relative;
-    width: 100vw;
+    width: 1340px;
     height: 654px;
   }
 
   &__slidewrap1 {
-    width: 100vw;
+    width: 1340px;
     height: 654px;
     img {
-      width: 100vw;
+      width: 1340px;
       height: 100%;
       object-fit: cover;
     }

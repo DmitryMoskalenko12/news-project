@@ -9,6 +9,7 @@ import { useEffect, useState} from 'react';
 import useAsideNewsPanel from '../hooks/useAsideNewsPanel';
 import SectionVideo from '../components/sectionVideo/SectionVideo';
 import AuthorColon from '../components/authorColon/AuthorColon';
+import NewsBlock from '../components/newsBlock/NewsBlock';
 
 const StartPage = () => {
 
@@ -34,7 +35,7 @@ const StartPage = () => {
   const [endednews, setEndedNews] = useState(false);
   const [endedarticl, setEndedArticl] = useState(false);
 
-  const {getSliders, getRedaction, getRegionNews, getVideoNews, getBigVideo } = useNewsService();
+  const {getSliders, getRedaction, getRegionNews, getVideoNews, getBigVideo, getColonAuthor, getBlock1, getBlock2, getTwoNews} = useNewsService();
   const {setDataNews, setDataArticl, setDataNewsAll} = useAsideNewsPanel(
     limit, 
     page, 
@@ -71,7 +72,7 @@ const StartPage = () => {
    .then((res) => setSliders(res))
    .catch((e) => console.log(e))
   },[])
-  const {onNext, onPrev, slideIndex, setSlideIndex, setOffset, offset, width, sliders, setSliders} = useSlider(1, 0, 1350);
+  const {onNext, onPrev, slideIndex, setSlideIndex, setOffset, offset, width, sliders, setSliders} = useSlider(1, 0, 1340);
   
 /* redactionSection */
 const [data, setData] = useState([]);
@@ -103,6 +104,45 @@ useEffect(() => {
   .catch((e) => console.log(e))
 },[])
 
+/* authorColon */
+const [authorData, setAuthorData] = useState([]);
+const [limitColon, setLimitColon] = useState(4);
+const [pageColon, setPageColon] = useState(1);
+const [authorEnded, setAuthorEnded] = useState(false);
+const [authorLoading, setAuthorLoading] = useState(true);
+const [authorError, setAuthorError] = useState(false);
+
+useEffect(() => {
+  setAuthorLoading(true)
+  getColonAuthor(limitColon, pageColon)
+  .then((res) => {
+    if (res.length < 4) {
+      setAuthorEnded(true)
+    }
+   setAuthorData([...authorData, ...res]);
+   setAuthorLoading(false)
+  })
+  .catch(() => setAuthorError(true))
+},[pageColon])
+
+/* newsblock */
+const [block1, setBlock1] = useState([]);
+const [block2, setBlock2] = useState([]);
+const [twonews, setTwoNews] = useState([]);
+
+useEffect(() => {
+ getBlock1()
+ .then((res) => setBlock1(res))
+ .catch((e) => console.log(e))
+
+ getBlock2()
+ .then((res) => setBlock2(res))
+ .catch((e) => console.log(e))
+
+ getTwoNews()
+ .then((res) => setTwoNews(res))
+ .catch((e) => console.log(e))
+},[])
     return(
       <>
       <Header/>
@@ -146,9 +186,15 @@ useEffect(() => {
       <SectionVideo videoData = {videoData} bigVideo = { bigVideo}/>
       <section className="colpolit">
         <div className="container">
-        <AuthorColon/>
+          <div className="flextwosection">
+          <AuthorColon authorData = {authorData} pageColon =  {pageColon} setPageColon = {setPageColon} authorEnded = {authorEnded} authorLoading = {authorLoading} authorError = {authorError}/>
+          <NewsBlock block1 = {block1} block2 = {block2} twonews = {twonews}/>
+          </div>
+       
+
         </div>
       </section>
+      
 
      </>
     )

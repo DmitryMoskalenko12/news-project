@@ -1,6 +1,18 @@
 import axios from "axios";
 
 const useNewsService = () => {
+  const getBlock1 = async () => {
+    const result = await axios.get(`http://localhost:3001/block1`)
+    return result.data
+  }
+  const getTwoNews = async () => {
+    const result = await axios.get(`http://localhost:3001/twonews`)
+    return result.data
+  }
+  const getBlock2 = async () => {
+    const result = await axios.get(`http://localhost:3001/block2`)
+    return result.data
+  }
   const getColonAuthor = async (limit, page) => {
     const result = await axios.get(`http://localhost:3001/colonAuthor?_limit=${limit}&_page=${page}`)
     return result.data
@@ -92,7 +104,10 @@ const useNewsService = () => {
     getSliders,
     getVideoNews,
     getBigVideo,
-    getColonAuthor
+    getColonAuthor,
+    getBlock1,
+    getTwoNews,
+    getBlock2
   }
 }
 export default useNewsService;

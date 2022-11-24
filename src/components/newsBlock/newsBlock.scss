@@ -1,0 +1,143 @@
+.newsblock {
+ display: grid;
+ grid-template-columns: 550px 240px;
+ grid-template-rows: minmax(900px, auto);
+ grid-auto-rows: minmax(900px, auto);
+ padding: 24px 32px 32px;
+ background: #FFFFFF;
+ border-radius: 12px;
+ column-gap: 32px;
+ margin-left: 32px;
+ &__bignews {
+  width: 100%;
+ }
+ &__title {
+  font-weight: 700;
+  font-size: 32px;
+  color: #2D2D2D;
+ }
+ &__wrapimg {
+  width: 100%;
+  height: 360px;
+  margin-top: 32px;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+ }
+ &__date {
+  font-weight: 400;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #707070;
+  margin-top: 18px;
+ }
+ &__descr {
+  margin-top: 10px;
+  a {
+    font-weight: 600;
+    font-size: 24px;
+    color: #182840;
+    text-decoration: none;
+  }
+ }
+ &__twonews {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 40px;
+ }
+ &__subblock {
+  width: 260px;
+  min-height: 280px;
+ }
+ &__subwrapimg {
+  width: 260px;
+  height: 100%;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+ }
+ &__subdate {
+  font-weight: 400;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #707070;
+  margin-top: 18px;
+ }
+ &__subdescr {
+  a {
+    font-weight: 600;
+    font-size: 16px;
+    color: #182840;
+    text-decoration: none;
+  }
+  margin-top: 10px;
+ }
+ &__allnews {
+  a {
+    font-weight: 600;
+    font-size: 14px;
+    color: #FF7534;
+    text-decoration: none;
+  }
+  margin-top: 15px;
+  text-align: right;
+ }
+ &__titlebig {
+  margin-top: 37px;
+  a {
+    font-weight: 500;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: #515151;
+    text-decoration: none;
+  }
+ }
+ &__colon {
+  margin-top: 32px;
+ }
+ &__colondescr {
+  a {
+    font-weight: 500;
+    font-size: 16px;
+    color: #182840;
+    text-decoration: none;
+  }
+  span {
+    font-weight: 400;
+    font-size: 14px;
+    color: #707070;
+    margin-right: 3px;
+  }
+ }
+ &__but {
+ margin-top: 37px;
+  a {
+  position: relative;
+  font-weight: 500;
+  font-size: 16px;
+  color: #182840;
+  text-decoration: none;
+  span {
+    
+    &:hover {
+      background: #707070;
+    }
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    border: 1px solid #707070;
+    padding-top: 2px;
+    padding-left: 5px;
+    top: -5px;
+    right: -50px;
+  }
+  }
+ }
+}

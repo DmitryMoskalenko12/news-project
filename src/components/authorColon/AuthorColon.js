@@ -1,30 +1,7 @@
 import './authorColon.scss';
-import { useState, useEffect } from 'react';
-import useNewsService from '../../services/NewsService';
 import circle from '../../icons/circle.png';
 
-const AuthorColon = () => {
-  const [authorData, setAuthorData] = useState([]);
-  const [limitColon, setLimitColon] = useState(4);
-  const [pageColon, setPageColon] = useState(1);
-  const [authorEnded, setAuthorEnded] = useState(false);
-  const [authorLoading, setAuthorLoading] = useState(true);
-  const [authorError, setAuthorError] = useState(false);
-
-  const {getColonAuthor} = useNewsService();
-
-  useEffect(() => {
-    setAuthorLoading(true)
-    getColonAuthor(limitColon, pageColon)
-    .then((res) => {
-      if (res.length < 4) {
-        setAuthorEnded(true)
-      }
-     setAuthorData([...authorData, ...res]);
-     setAuthorLoading(false)
-    })
-    .catch(() => setAuthorError(true))
-  },[pageColon])
+const AuthorColon = ({authorData,  pageColon,  setPageColon,  authorEnded,  authorLoading, authorError }) => {
 
   const fail = authorError ? 'Помилка завантаженн' : null;
 
