@@ -1,7 +1,10 @@
 import axios from "axios";
 
 const useNewsService = () => {
-
+  const getColonAuthor = async (limit, page) => {
+    const result = await axios.get(`http://localhost:3001/colonAuthor?_limit=${limit}&_page=${page}`)
+    return result.data
+  }
   const getVideoNews = async () => {
     const result = await axios.get('http://localhost:3001/videoNews')
     return result.data
@@ -88,7 +91,8 @@ const useNewsService = () => {
     getRegionNews,
     getSliders,
     getVideoNews,
-    getBigVideo
+    getBigVideo,
+    getColonAuthor
   }
 }
 export default useNewsService;

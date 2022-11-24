@@ -8,6 +8,7 @@ import useNewsService from '../services/NewsService';
 import { useEffect, useState} from 'react';
 import useAsideNewsPanel from '../hooks/useAsideNewsPanel';
 import SectionVideo from '../components/sectionVideo/SectionVideo';
+import AuthorColon from '../components/authorColon/AuthorColon';
 
 const StartPage = () => {
 
@@ -143,7 +144,12 @@ useEffect(() => {
        </div>
       </div>
       <SectionVideo videoData = {videoData} bigVideo = { bigVideo}/>
-      
+      <section className="colpolit">
+        <div className="container">
+        <AuthorColon/>
+        </div>
+      </section>
+
      </>
     )
 }

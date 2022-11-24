@@ -124,11 +124,10 @@ const liNews = filter === 'Новини' ?  <li
             })
           }
           {fail}
-          {liNews}
-          {liAllNews}
-          {liArticl}
          </ul>
-
+         {liNews}
+        {liAllNews}
+        {liArticl}
         </aside>
       </div>
     </section>

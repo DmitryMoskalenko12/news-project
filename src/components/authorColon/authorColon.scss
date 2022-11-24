@@ -1,0 +1,123 @@
+.authorpanel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 16px 16px 24px;
+  width: 304px;
+  height: 991px;
+  background: #FFFFFF;
+  border-radius: 12px;
+  &__list {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  &__allcolon {
+    width: 272px;
+    height: 34px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    margin-bottom: 48px;
+  }
+  &__colon {
+    font-weight: 600;
+    font-size: 24px;
+    color: #2D2D2D;
+  }
+  &__all {
+   a {
+    font-weight: 600;
+    font-size: 14px;
+    color: #FF7534;
+    text-decoration: none;
+   }
+  }
+  &__block {
+    min-height: 170px;
+  }
+  &__authorblock {
+    width: 272px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__imgwrap {
+    width: 64px;
+    height: 76px;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  &__descr {
+    margin-right: 70px;
+  }
+  &__name {
+    font-weight: 500;
+    font-size: 16px;
+    color: #2D2D2D;
+  }
+  &__work {
+    font-weight: 400;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #707070;
+  }
+  &__title {
+    a {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 130%;
+    color: #182840;
+    text-decoration: none;
+    }
+    margin-top: 16px;
+  }
+  &__date {
+    font-weight: 400;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #707070;
+    margin-top: 12px;
+  }
+  &__but {
+    position: relative;
+    width: 272px;
+    font-weight: 500;
+    font-size: 16px;
+    color: #182840;
+    border: 1px solid #707070;
+    margin-top: 50px;
+    border-radius: 4px;
+    &:hover {
+      background: #979EA9;
+    }
+  }
+  &__circle{
+    position: absolute;
+    display: block;
+    width: 16px;
+    height: 15px;
+    margin-right: 0px;
+    object-fit: cover;
+    margin-left: 50px;
+    margin-top: 3px;
+  }
+}
+
+.rotateauth {
+  animation-name: rotateauthor;
+  animation-duration: 750ms;
+  animation-iteration-count: infinite;
+}
+@keyframes rotateauthor {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
