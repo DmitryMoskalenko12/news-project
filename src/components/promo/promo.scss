@@ -68,3 +68,54 @@
     }
   }
 }
+.promoslider {
+  width: 830px;
+  &__field {
+    display: flex;
+  }
+  &__slide {
+    padding: 16px;
+    width: 250px;
+    margin-right: 35px;
+    min-height: 105px;
+    background: #F7F7F7;
+    border-radius: 8px;
+    margin-top: 29px;
+    a {
+      text-decoration: none;
+    }
+  }
+  &__date {
+    font-weight: 400;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #707070;
+    margin-bottom: 10px;
+  }
+  &__descr {
+    font-weight: 500;
+    font-size: 16px;
+    color: #182840;
+  }
+  &__window {
+    width: 830px;
+    position: relative;
+  }
+  &__but {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.16);
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.24);
+    border-radius: 88px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    font-size: 20px;
+    right: 10px;
+    top: 60px;
+    cursor: pointer;
+    z-index: 10;
+  }
+}

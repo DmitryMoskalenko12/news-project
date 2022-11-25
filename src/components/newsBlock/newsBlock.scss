@@ -3,11 +3,12 @@
  grid-template-columns: 550px 240px;
  grid-template-rows: minmax(900px, auto);
  grid-auto-rows: minmax(900px, auto);
- padding: 24px 32px 32px;
+ padding: 0px 32px 32px;
  background: #FFFFFF;
  border-radius: 12px;
  column-gap: 32px;
  margin-left: 32px;
+ margin-top: 30px;
  &__bignews {
   width: 100%;
  }

@@ -11,6 +11,7 @@ import SectionVideo from '../components/sectionVideo/SectionVideo';
 import AuthorColon from '../components/authorColon/AuthorColon';
 import NewsBlock from '../components/newsBlock/NewsBlock';
 import Promo from '../components/promo/Promo';
+import Footer from '../footer/Footer';
 
 const StartPage = () => {
 
@@ -36,7 +37,7 @@ const StartPage = () => {
   const [endednews, setEndedNews] = useState(false);
   const [endedarticl, setEndedArticl] = useState(false);
 
-  const {getSliders, getRedaction, getRegionNews, getVideoNews, getBigVideo, getColonAuthor, getBlock1, getBlock2, getTwoNews} = useNewsService();
+  const {getSliders, getRedaction, getRegionNews, getVideoNews, getBigVideo, getColonAuthor, getBlock1, getBlock2, getTwoNews, getPromoDescr,getPromoSlider, getEconomicBlock1, getEconomicBlock2, getEconomicTwoNews, getLifeBlock1, getLifeBlock2, getLifeTwoNews } = useNewsService();
   const {setDataNews, setDataArticl, setDataNewsAll} = useAsideNewsPanel(
     limit, 
     page, 
@@ -73,7 +74,7 @@ const StartPage = () => {
    .then((res) => setSliders(res))
    .catch((e) => console.log(e))
   },[])
-  const {onNext, onPrev, slideIndex, setSlideIndex, setOffset, offset, width, sliders, setSliders} = useSlider(1, 0, 1340);
+  const {onNext, onPrev, slideIndex, setSlideIndex, setOffset, offset, width, sliders, setSliders, onPromoNext, promooffset, promoWidth, promosliders, setPromoSliders} = useSlider(1, 0, 1340);
   
 /* redactionSection */
 const [data, setData] = useState([]);
@@ -144,6 +145,57 @@ useEffect(() => {
  .then((res) => setTwoNews(res))
  .catch((e) => console.log(e))
 },[])
+
+/* promoSlider */
+const [promoDescr, setPromoDescr] = useState([]);
+
+useEffect(() => {
+ getPromoDescr()
+ .then((res) => setPromoDescr(res))
+ .catch((e) => console.log(e))
+
+ getPromoSlider()
+ .then((res) => setPromoSliders(res))
+ .catch((e) => console.log(e))
+},[])
+
+/* economic block */
+const [ecomomicBlock1, setEconomicBlock1] = useState([]);
+const [economicBlock2, setEconomicBlock2] = useState([]);
+const [economicTwonews, setEconomicTwoNews] = useState([]);
+
+useEffect(() => {
+  getEconomicBlock1()
+ .then((res) => setEconomicBlock1(res))
+ .catch((e) => console.log(e))
+
+ getEconomicBlock2()
+ .then((res) => setEconomicBlock2(res))
+ .catch((e) => console.log(e))
+
+ getEconomicTwoNews()
+ .then((res) => setEconomicTwoNews(res))
+ .catch((e) => console.log(e))
+},[])
+
+/* lifestyle */
+const [lifeBlock1, setLifeBlock1] = useState([]);
+const [lifeBlock2, setLifeBlock2] = useState([]);
+const [lifeTwonews, setLifeTwoNews] = useState([]);
+
+useEffect(() => {
+  getLifeBlock1()
+ .then((res) => setLifeBlock1(res))
+ .catch((e) => console.log(e))
+
+ getLifeBlock2()
+ .then((res) => setLifeBlock2(res))
+ .catch((e) => console.log(e))
+
+ getLifeTwoNews()
+ .then((res) => setLifeTwoNews(res))
+ .catch((e) => console.log(e))
+},[])
     return(
       <>
       <Header/>
@@ -192,8 +244,14 @@ useEffect(() => {
           </div>
       </section>
        <section className='promo'>
-         <Promo/>
+        <div className="promocolumn">
+        <Promo  onPromoNext = {onPromoNext} promooffset = {promooffset} promoWidth = {promoWidth} promosliders = {promosliders} setPromoSliders ={setPromoSliders} promoDescr = {promoDescr}/>
+        <NewsBlock  block1 = {ecomomicBlock1} block2 = {economicBlock2} twonews = {economicTwonews}/>
+        <NewsBlock  block1 = {lifeBlock1} block2 = {lifeBlock2} twonews = {lifeTwonews}/>
+        </div>
+         
        </section>
+       <Footer/>
 
      </>
     )

@@ -1,6 +1,39 @@
 import axios from "axios";
 
 const useNewsService = () => {
+  
+  const getLifeBlock1 = async () => {
+    const result = await axios.get(` http://localhost:3001/lifeBlock1`)
+    return result.data
+  }
+  const getLifeBlock2 = async () => {
+    const result = await axios.get(` http://localhost:3001/lifeBlock2`)
+    return result.data
+  }
+  const getLifeTwoNews = async () => {
+    const result = await axios.get(` http://localhost:3001/lifeTwonews`)
+    return result.data
+  }
+  const getEconomicBlock1 = async () => {
+    const result = await axios.get(` http://localhost:3001/economicBlock1`)
+    return result.data
+  }
+  const getEconomicBlock2 = async () => {
+    const result = await axios.get(`http://localhost:3001/economicBlock2`)
+    return result.data
+  }
+  const getEconomicTwoNews = async () => {
+    const result = await axios.get(`http://localhost:3001/economicTwonews`)
+    return result.data
+  }
+  const getPromoDescr = async () => {
+    const result = await axios.get(`http://localhost:3001/promoDescr`)
+    return result.data
+  }
+  const getPromoSlider = async () => {
+    const result = await axios.get(`http://localhost:3001/promoSliders`)
+    return result.data
+  }
   const getBlock1 = async () => {
     const result = await axios.get(`http://localhost:3001/block1`)
     return result.data
@@ -107,7 +140,15 @@ const useNewsService = () => {
     getColonAuthor,
     getBlock1,
     getTwoNews,
-    getBlock2
+    getBlock2,
+    getPromoDescr,
+    getPromoSlider,
+    getEconomicBlock1,
+    getEconomicBlock2,
+    getEconomicTwoNews,
+    getLifeBlock1,
+    getLifeBlock2,
+    getLifeTwoNews
   }
 }
 export default useNewsService;
