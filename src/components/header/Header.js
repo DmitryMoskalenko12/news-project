@@ -30,6 +30,7 @@ const Header = () =>{
 
   return(
     <header className="header">
+    <div className='header__hr'> </div>
      <div className="container">
       <div className="header__top">
 
@@ -74,7 +75,7 @@ const Header = () =>{
         </div>
 
       </div>
-      <hr className='header__hr' />
+
       <nav className="header__navig">
 
         <ul className="header__listmenu">

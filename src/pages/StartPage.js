@@ -74,7 +74,7 @@ const StartPage = () => {
    .then((res) => setSliders(res))
    .catch((e) => console.log(e))
   },[])
-  const {onNext, onPrev, slideIndex, setSlideIndex, setOffset, offset, width, sliders, setSliders, onPromoNext, promooffset, promoWidth, promosliders, setPromoSliders} = useSlider(1, 0, 1340);
+  const {onNext, onPrev, slideIndex, setSlideIndex, setOffset, offset, width, sliders, setSliders, onPromoNext, promooffset, promoWidth, promosliders, setPromoSliders} = useSlider(1, 0, 1349);
   
 /* redactionSection */
 const [data, setData] = useState([]);

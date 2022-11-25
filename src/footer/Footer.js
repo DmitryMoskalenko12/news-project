@@ -141,6 +141,13 @@ const Footer = () => {
         </div>
       </div>
       <div className='footer__hrbottom'></div>
+
+      <div className="footer__namecompany">© 2020-2022, ТОВ «Медіа Мережі»</div>
+      <div className="footer__policyconf">
+        <div className="footer__link"><a href="#">Політика користувача</a></div>
+        <div className="footer__link"><a href="#">Політика конфіденційності</a></div>
+        <div className="footer__link"><a href="#">Політика Cookie-файлів</a></div>
+      </div>
     </footer>
   )
 }

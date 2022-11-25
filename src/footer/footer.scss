@@ -112,5 +112,28 @@
     left: 0;
     margin-top: 60px;
   }
-  
+  &__namecompany {
+    font-weight: 400;
+    font-size: 14px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #515151;
+    margin-top: 87px;
+  }
+  &__policyconf {
+    width: 558px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: 24px;
+  }
+  &__link {
+    a {
+      font-weight: 400;
+      font-size: 14px;
+      color: #919191;
+      text-decoration: none;
+    }
+  }
 }
