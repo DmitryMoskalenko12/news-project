@@ -1,6 +1,5 @@
 .news {
-  min-height: 1591px;
-  background: #F7F7F7;
+  min-height: 1495px;
   padding: 64px 64px 32px 64px;
   &__panel {
     display: flex;
@@ -9,8 +8,8 @@
     padding: 16px 16px 24px;
     width: 304px;
     height: 1495px;
-    background: #FFFFFF;
     border-radius: 12px;
+    background: #FFFFFF;
   }
   &__allnews {
     width: 272px;

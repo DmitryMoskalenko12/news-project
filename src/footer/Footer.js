@@ -5,8 +5,17 @@ import facek from '../icons/facek.png';
 import insta from '../icons/insta.png';
 import tik from '../icons/tik.png';
 import news from '../icons/news.png';
+/* import YouTube from 'react-youtube'; */
 
 const Footer = () => {
+
+/*   const opts = {
+    height: '300',
+    width: '300',
+    playerVars: {
+      autoplay: 1,
+    },
+  }; */
 
   return(
     <footer className='footer'>
@@ -148,6 +157,7 @@ const Footer = () => {
         <div className="footer__link"><a href="#">Політика конфіденційності</a></div>
         <div className="footer__link"><a href="#">Політика Cookie-файлів</a></div>
       </div>
+     {/* <YouTube videoId="pLj6Oe32Zu0" opts={opts} onPause = {true}/> */}
     </footer>
   )
 }

@@ -1,7 +1,10 @@
 import axios from "axios";
 
 const useNewsService = () => {
-  
+  const getSingleArticl = async (id) => {
+    const result = await axios.get(`http://localhost:3001/allnews/${id}`)
+    return result.data
+  }
   const getLifeBlock1 = async () => {
     const result = await axios.get(` http://localhost:3001/lifeBlock1`)
     return result.data
@@ -118,6 +121,7 @@ const useNewsService = () => {
     return {
       content: res.content,
       time: res.time,
+      path: res.path,
       id: res.id
     }
   }
@@ -148,7 +152,8 @@ const useNewsService = () => {
     getEconomicTwoNews,
     getLifeBlock1,
     getLifeBlock2,
-    getLifeTwoNews
+    getLifeTwoNews,
+    getSingleArticl
   }
 }
 export default useNewsService;

@@ -7,6 +7,7 @@ import yout from '../../icons/You.png';
 import AsideMenu from '../asideMenu/AsideMenu';
 import { useState, useEffect } from 'react';
 import { useHttp } from '../../hooks/http.hook';
+import { NavLink } from 'react-router-dom';
 
 const Header = () =>{
   
@@ -80,9 +81,9 @@ const Header = () =>{
 
         <ul className="header__listmenu">
           {
-            button.map(({content, href, id}, i) => {
+            button.map(({content, path, id}, i) => {
               return(
-                <li  key={id} onClick={() => setActive(id)} className={`header__li ${active === i + 1 ? 'activeli' : null}`}><a href={href}>{content}</a></li>
+                <li  key={id} onClick={() => setActive(id)} className={`header__li ${active === i + 1 ? 'activeli' : null }`}><NavLink end to={path}>{content}</NavLink></li>
               )
             })
           }

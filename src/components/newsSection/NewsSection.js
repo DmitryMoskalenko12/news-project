@@ -1,137 +1,66 @@
 import './newsSection.scss';
-import { useMemo } from 'react';
-import circle from '../../icons/circle.png';
+import { useState, useEffect } from 'react';
+import AsideTest from '../asideNews/AsideNews';
+import useAsideNewsPanel from '../../hooks/useAsideNewsPanel';
 
-const NewsSection = ({
-  error,
-  setPageNews, 
-  setPageArticl, 
-  setPage,
-  choicebut,
-  filter,
-  setChoiceBut, 
-  endedarticl, 
-  endednews,
-  ended, 
-  setActive, 
-  active ,
-  setFilter, 
-  loading, 
-  limit, 
-  page ,
-  setLoading , 
-  setEnded, 
-  setAllNews,  
-  setError,  
-  allnews,  
-  pagearticl,  
-  setEndedArticl, 
-  setArticl, 
-  articl, 
-  pageNews ,
-  setEndedNews, 
-  setNews, 
-  news }) => {
+const NewsAside = ({getAllNews, getArticl, getNews}) => {
+const [filter, setFilter] = useState('Всі');
+const [all, setAll] = useState([]);
+const [news, setNews] = useState([])
+const [articl, setArticl] = useState([])
+const [loading, setLoading] = useState(true);
+const [endedAll, setEndedAll] = useState(false);
+const [endedNews, setEndedNews] = useState(false);
+const [endedArticl, setEndedArticl] = useState(false)
+const [pageAll, setPageAll] = useState(1);
+const [pageNews, setPageNews] = useState(1);
+const [pageArticl, setPageArticl] = useState(1);
+const [limit, setLimit] = useState(10);
+const [error, setError] = useState(false);
 
- const result = () => {
+const getFilter = (filter) => {
+ return setFilter(filter)
+}
+const {setDataNews} = useAsideNewsPanel();
+
+useEffect(() => {
+  setDataNews(all, limit, pageAll, setAll, getAllNews, setEndedAll, setLoading, setError)
+},[pageAll])
+
+useEffect(() => {
+  setDataNews(news, limit, pageNews, setNews, getNews, setEndedNews, setLoading, setError)
+},[pageNews])
+
+useEffect(() => {
+  setDataNews(articl, limit, pageArticl, setArticl, getArticl,setEndedArticl, setLoading, setError)
+},[pageArticl])
+
+const dataResult = () => {
+
   switch (filter) {
     case 'Всі':
-      return  allnews
+       return <AsideTest getFilter = {getFilter} loading = {loading} ended = {endedAll} error = {error} setPage = {setPageAll} page = {pageAll} data = {all}/> 
+      break
     case 'Новини':
-      return news
+      return <AsideTest getFilter = {getFilter} loading = {loading} ended = {endedNews} error = {error} setPage = {setPageNews} page = {pageNews} data = {news}/>
+      break
     case 'Статті':
-      return articl 
+    return <AsideTest getFilter = {getFilter} loading = {loading} ended = {endedArticl} error = {error} setPage = {setPageArticl} page = {pageArticl} data = {articl}/> 
+     break
     default:
       break;
   }
  }
- const final = useMemo(() => {
- return result()
- }, [filter, allnews, articl, news])
 
- const fail = error ? '...Помилка завантаження': null;
-
-const differentPage = () => {
-if (filter === 'Всі') {
-  setPage(page => page + 1)
-} else if( filter === 'Новини'){
-  setPageNews(pageNews => pageNews + 1)
-} else if(filter === 'Статті'){
-  setPageArticl(pagearticl => pagearticl + 1)
-}
-}
-
-const liNews = filter === 'Новини' ?  <li 
-                                      style ={{display: endednews ? 'none' : 'block'}} 
-                                      onClick={() => differentPage()}
-                                      className={`news__load`}>
-                                      <img 
-                                      className={`news__circle ${loading ? 'rotate' : null}`} 
-                                      src={circle} 
-                                      alt="circle" />
-                                      Завантажити ще
-                                      </li>  : null
-  const liAllNews = filter === 'Всі' ?  <li 
-                                      style ={{display: ended ? 'none' : 'block'}} 
-                                      onClick={() => differentPage()}
-                                      className={`news__load`}>
-                                      <img 
-                                      className={`news__circle ${loading ? 'rotate' : null}`} 
-                                      src={circle} 
-                                      alt="circle" />
-                                      Завантажити ще
-                                      </li>  : null  
-  const liArticl = filter === 'Статті' ?  <li 
-                                      style ={{display: endedarticl ? 'none' : 'block'}} 
-                                      onClick={() => differentPage()}
-                                      className={`news__load`}>
-                                      <img 
-                                      className={`news__circle ${loading ? 'rotate' : null}`} 
-                                      src={circle} 
-                                      alt="circle" />
-                                      Завантажити ще
-                                      </li>  : null 
   return(
-    <section className="news">
-      <div className="container">
-        <aside className="news__panel">
-
-         <div className="news__allnews">
-          <h1 className="news__newsall">Всі новини</h1>
-          <div className="news__arch"><a href="#">Архів</a></div>
-         </div>
-
-         <div className="news__choicebut">
-          {
-            choicebut.map(({content, id}, i) => {
-              return <div onClick={(e) => {setFilter(e.target.textContent); setActive(id)}} key={content} className={`news__item ${ active == i + 1 ? 'activechoice': null}`}>{content}</div>
-            })
-          }
-         </div>
-
-         <ul className="news__list">
-          {
-            final.map(({content, id, time}) => {
-              return(
-                <li key={id} className="news__li">
-                  <div className="news__litimedes">
-                    <span>{time}</span>
-                    <a href="#">{content}</a>
-                  </div>
-                  <hr/>
-              </li>
-              )
-            })
-          }
-          {fail}
-         </ul>
-         {liNews}
-        {liAllNews}
-        {liArticl}
-        </aside>
-      </div>
-    </section>
+    <div className="news">
+      {
+       dataResult()
+      }
+    </div>
   )
 }
 
-export default NewsSection;
+export default NewsAside;
+
+

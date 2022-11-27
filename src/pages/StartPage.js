@@ -1,80 +1,34 @@
 import Header from '../components/header/Header';
 import SectionSlider from '../components/sectionSlider/SectionSlider';
-import NewsSection from '../components/newsSection/NewsSection';
 import Redaction from '../components/redaction/Redaction';
 import RegionalNews from '../components/regionalNews/RegionalNews';
 import { useSlider } from '../hooks/useSlider';
 import useNewsService from '../services/NewsService';
-import { useEffect, useState} from 'react';
-import useAsideNewsPanel from '../hooks/useAsideNewsPanel';
+import { useEffect, useState, useRef} from 'react';
 import SectionVideo from '../components/sectionVideo/SectionVideo';
 import AuthorColon from '../components/authorColon/AuthorColon';
 import NewsBlock from '../components/newsBlock/NewsBlock';
 import Promo from '../components/promo/Promo';
 import Footer from '../footer/Footer';
+import NewsSection from '../components/newsSection/NewsSection';
 
 const StartPage = () => {
 
   /* asidePanelFunct */
-  const [choicebut, setChoiceBut] = useState([
-    {content: 'Всі', id: 1},
-    {content: 'Новини', id: 2},
-    {content: 'Статті', id: 3}
-  ])
 
-  const [filter, setFilter] = useState('Всі');
-  const [allnews, setAllNews] = useState([]);
-  const [articl, setArticl] = useState([]);
-  const [news, setNews] = useState([]);
-  const [page, setPage] = useState(1);
-  const [pagearticl, setPageArticl] = useState(1);
-  const [pageNews, setPageNews] = useState(1);
-  const [limit, setLimit] = useState(10);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [active, setActive] = useState(1);
-  const [ended, setEnded] = useState(false);
-  const [endednews, setEndedNews] = useState(false);
-  const [endedarticl, setEndedArticl] = useState(false);
-
-  const {getSliders, getRedaction, getRegionNews, getVideoNews, getBigVideo, getColonAuthor, getBlock1, getBlock2, getTwoNews, getPromoDescr,getPromoSlider, getEconomicBlock1, getEconomicBlock2, getEconomicTwoNews, getLifeBlock1, getLifeBlock2, getLifeTwoNews } = useNewsService();
-  const {setDataNews, setDataArticl, setDataNewsAll} = useAsideNewsPanel(
-    limit, 
-    page, 
-    setLoading, 
-    setEnded, 
-    setAllNews, 
-    setError, 
-    allnews, 
-    pagearticl, 
-    setEndedArticl,
-    setArticl,
-    articl,
-    pageNews,
-    setEndedNews,
-    setNews,
-    news)
-
-  useEffect(() => {
-    setDataNews();
-  },[pageNews])
-
-  useEffect(() => {
-    setDataArticl();
-  },[pagearticl])
-
-  useEffect(() => {
-    setDataNewsAll()
-  },[page])
+  const {getSliders, getRedaction, getRegionNews, getVideoNews, getBigVideo, getColonAuthor, getBlock1, getBlock2, getTwoNews, getPromoDescr,getPromoSlider, getEconomicBlock1, getEconomicBlock2, getEconomicTwoNews, getLifeBlock1, getLifeBlock2, getLifeTwoNews, getAllNews, getArticl, getNews } = useNewsService();
 
 /* slider */
-
+  const windowRef = useRef()
+  const [ widthSlide, setWidthSlide] = useState(0)
+  
   useEffect(() => {
+    setWidthSlide(getComputedStyle(windowRef.current).width.replace(/\D/ig, ''))
     getSliders()
    .then((res) => setSliders(res))
    .catch((e) => console.log(e))
   },[])
-  const {onNext, onPrev, slideIndex, setSlideIndex, setOffset, offset, width, sliders, setSliders, onPromoNext, promooffset, promoWidth, promosliders, setPromoSliders} = useSlider(1, 0, 1349);
+  const {onNext, onPrev, slideIndex, setSlideIndex, setOffset, offset, widt, sliders, setSliders, onPromoNext, promooffset, promoWidth, promosliders, setPromoSliders} = useSlider(1, 0, +widthSlide);
   
 /* redactionSection */
 const [data, setData] = useState([]);
@@ -199,38 +153,9 @@ useEffect(() => {
     return(
       <>
       <Header/>
-      <SectionSlider onNext = {onNext} onPrev = {onPrev} slideIndex = {slideIndex} setSlideIndex = {setSlideIndex} setOffset = {setOffset} offset = {offset} width = {width} sliders = {sliders} setSliders = {setSliders}/>
+      <SectionSlider onNext = {onNext} onPrev = {onPrev} slideIndex = {slideIndex} setSlideIndex = {setSlideIndex} setOffset = {setOffset} offset = {offset} width = {widt} sliders = {sliders} setSliders = {setSliders} ref = {windowRef}/>
        <div className='newswrap'>
-       <NewsSection
-            error = {error}
-            setPageNews = {setPageNews}
-            setPageArticl = {setPageArticl}
-            setPage = {setPage}
-            filter = {filter}
-            choicebut = {choicebut} 
-            setChoiceBut = {setChoiceBut}
-            endedarticl = {endedarticl}
-            endednews = {endednews}
-            ended = {ended}
-            setActive = {setActive}
-            active = {active}
-            setFilter = {setFilter}
-            loading = {loading} 
-            limit = {limit}
-            page = {page}
-            setLoading = {setLoading} 
-            setEnded = {setEnded}
-            setAllNews = {setAllNews} 
-            setError = {setError} 
-            allnews = {allnews} 
-            pagearticl = {pagearticl} 
-            setEndedArticl = {setEndedArticl}
-            setArticl = {setArticl}
-            articl = {articl}
-            pageNews = {pageNews}
-            setEndedNews = {setEndedNews}
-            setNews = {setNews}
-            news = {news} />
+        <NewsSection getAllNews= {getAllNews} getArticl = {getArticl} getNews = {getNews}/>
        <div className='regandredac'>
        <Redaction data = {data}/>
        <RegionalNews dataRegional = {dataRegional}/>

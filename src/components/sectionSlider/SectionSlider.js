@@ -1,17 +1,18 @@
 import './sectionSlider.scss';
+import { forwardRef } from 'react';
 
-const SectionSlider = ({onNext, onPrev, slideIndex, setSlideIndex, setOffset, offset, width, sliders}) => {
+const SectionSlider = forwardRef(({onNext, onPrev, slideIndex, setSlideIndex, setOffset, offset, width, sliders}, ref) => {
 
   return(
     <div className='slider'>
-       <div style={{overflow: 'hidden'}} className="slider__window">
+       <div ref={ref} style={{overflow: 'hidden'}} className="slider__window">
         <div style={{width: `${100 * sliders.length + '%'}`, transition: '0.7s all', transform: `translateX(-${offset}px)`}} className="slider__field">
           {
           sliders.map(({src, descr, alt},i) => {
             return(
-              <div key={i} className="slider__item">
+              <div style={{width: width}} key={i} className="slider__item">
                 <h1 className="slider__title">{descr}</h1>
-                <div className="slider__slidewrap1">
+                <div style={{width: width}} className="slider__slidewrap1">
                   <img src={src} alt={alt} />
                 </div>
              </div>
@@ -52,5 +53,5 @@ const SectionSlider = ({onNext, onPrev, slideIndex, setSlideIndex, setOffset, of
         </div>
        </div>
   )
-}
+})
 export default SectionSlider;
