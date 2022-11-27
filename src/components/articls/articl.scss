@@ -1,0 +1,11 @@
+.articlinfo {
+  min-height: 700px;
+  background: #F7F7F7;
+  border-radius: 12px;
+  padding: 60px;
+  &__place {
+    width: 700px;
+    background: #FFFFFF;
+    border-radius: 12px;
+  }
+}

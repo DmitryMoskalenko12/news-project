@@ -2,19 +2,19 @@ import Header from "../components/header/Header";
 import Footer from "../footer/Footer";
 import {Helmet} from "react-helmet";
 
-const NewsPage = () => {
+const EconomicPage = () => {
   return(
     <>
     <Helmet>
         <meta
           name="description"
-          content="Page with News"
+          content="Page with Economic"
         />
-        <title>News page</title>
+        <title>Economic page</title>
     </Helmet>
     <Header/>
     <Footer/>
     </>
   )
 }
-export default NewsPage;
+export default EconomicPage;

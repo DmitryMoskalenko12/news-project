@@ -11,6 +11,7 @@ import NewsBlock from '../components/newsBlock/NewsBlock';
 import Promo from '../components/promo/Promo';
 import Footer from '../footer/Footer';
 import NewsSection from '../components/newsSection/NewsSection';
+import {Helmet} from "react-helmet";
 
 const StartPage = () => {
 
@@ -152,6 +153,14 @@ useEffect(() => {
 },[])
     return(
       <>
+       <Helmet>
+          <meta
+            name="description"
+            content="Page with War"
+          />
+          <title>War page</title>
+      </Helmet>
+
       <Header/>
       <SectionSlider onNext = {onNext} onPrev = {onPrev} slideIndex = {slideIndex} setSlideIndex = {setSlideIndex} setOffset = {setOffset} offset = {offset} width = {widt} sliders = {sliders} setSliders = {setSliders} ref = {windowRef}/>
        <div className='newswrap'>

@@ -1,20 +1,24 @@
 import Header from "../components/header/Header";
 import Footer from "../footer/Footer";
+import PaginationBlock from "../components/PaginitionBlock/PaginationBlock";
 import {Helmet} from "react-helmet";
 
-const NewsPage = () => {
+
+const PolitPage = () => {
   return(
     <>
     <Helmet>
         <meta
           name="description"
-          content="Page with News"
+          content="Page with Politics"
         />
-        <title>News page</title>
+        <title>Politics page</title>
     </Helmet>
+
     <Header/>
+    <PaginationBlock/>
     <Footer/>
     </>
   )
 }
-export default NewsPage;
+export default PolitPage;

@@ -1,6 +1,11 @@
 import axios from "axios";
 
 const useNewsService = () => {
+  
+  const getPaginationPolit = async (limit, page) => {
+    const result = await axios.get(`http://localhost:3001/paginationData?_limit=${limit}&_page=${page}`)
+    return result
+  }
   const getSingleArticl = async (id) => {
     const result = await axios.get(`http://localhost:3001/allnews/${id}`)
     return result.data
@@ -153,7 +158,8 @@ const useNewsService = () => {
     getLifeBlock1,
     getLifeBlock2,
     getLifeTwoNews,
-    getSingleArticl
+    getSingleArticl,
+    getPaginationPolit
   }
 }
 export default useNewsService;

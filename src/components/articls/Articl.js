@@ -1,6 +1,9 @@
 import { useParams } from "react-router-dom";
 import useNewsService from "../../services/NewsService";
 import { useState,useEffect } from "react";
+import Header from "../header/Header";
+import Footer from "../../footer/Footer";
+import './articl.scss';
 
 const Articl = () => {
 const {getSingleArticl} = useNewsService();
@@ -18,8 +21,14 @@ const {content, time} = singleArticl;
 
   return(
     <div>
-    <div>{time}</div>
-    <div>{content}</div>
+    <Header/>
+    <section className="articlinfo">
+      <div className="articlinfo__place">
+        <div>{time}</div>
+        <div>{content}</div>
+      </div>
+    </section>
+    <Footer/>
     </div>
   )
 }
