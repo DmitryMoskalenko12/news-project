@@ -24,6 +24,7 @@ const getData = () => {
   })
   .catch(() => setError(true))
 }
+
 useEffect(() => {
  getData()
 },[page])
@@ -34,13 +35,14 @@ const pageCount = (total, limit) => {
 
 const pageNumber = pageCount(total, limit);
 
-
 const count = []
+
  for (let i = 1; i <= pageNumber; i++) {
   count.push(i)
  }
 
  useEffect(() => {
+ 
   let tempNumberOfPages = [...arrBut]
 
   let dotsInitial = '...'
@@ -73,7 +75,7 @@ const count = []
     setPage(arrBut[3] - 2)
   }
   setArrBut(tempNumberOfPages)
-},[page])
+},[page, count])
 
   return(
     <div className='pagin'>
