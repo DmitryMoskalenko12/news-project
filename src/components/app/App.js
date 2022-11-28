@@ -1,6 +1,7 @@
 import './app.scss';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
+import Page404 from '../../pages/Page404';
 
 function App() {
 
@@ -12,20 +13,23 @@ function App() {
   const SocioPage = lazy(() => import('../../pages/SocioPage'));
   const ViewsPage = lazy(() => import('../../pages/ViewsPage'));
   const WorldPage = lazy(() => import('../../pages/WorldPage'));
+  const VideoPage = lazy(() => import('../videoPage/VideoPage'));
 
   return (
   <Suspense fallback = { <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '300px'}}>Завантаження...</div> }>
       <Router>
         <Routes>
-          <Route path='/' element={<StartPage/>}/>
-          <Route path='/:id' element ={<Articl/>}/>
+          <Route path = '/' element = {<StartPage/>}/>
+          <Route path = '/:id' element = {<Articl/>}/>
+          <Route path = '/video/:idvideo' element = {<VideoPage/>}/>
 
-          <Route path='/NewsPage' element={<NewsPage/>}/>
-          <Route path='/PolitPage' element={<PolitPage/>}/>
-          <Route path='/EconomPage' element={<EconomicPage/>}/>
-          <Route path='/SocPage' element={<SocioPage/>}/>
-          <Route path='/ViewsPage' element={<ViewsPage/>}/>
-          <Route path='/WorldPage' element={<WorldPage/>}/>
+          <Route path = '/NewsPage' element = {<NewsPage/>}/>
+          <Route path = '/PolitPage' element = {<PolitPage/>}/>
+          <Route path = '/EconomPage' element = {<EconomicPage/>}/>
+          <Route path = '/SocPage' element = {<SocioPage/>}/>
+          <Route path = '/ViewsPage' element = {<ViewsPage/>}/>
+          <Route path = '/WorldPage' element = {<WorldPage/>}/>
+          <Route path = '*' element = {<Page404/>}/>
         </Routes>
     </Router>
   </Suspense>

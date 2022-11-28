@@ -1,5 +1,6 @@
 import white from '../../icons/white.png'
 import './sectionVideo.scss';
+import { Link } from 'react-router-dom';
 
 const SectionVideo = ({bigVideo, videoData}) => {
 
@@ -13,13 +14,13 @@ const SectionVideo = ({bigVideo, videoData}) => {
       <div className="videonews__wrap">
 
         {
-          bigVideo.map(({src, videodate, videodescr, id}) => {
+          bigVideo.map(({src, videodate, videodescr, path, id}) => {
             return(
               <div key={id} className="videonews__bigwrap">
                 <div className="videonews__title">Відео</div> 
-                <a className='videonews__bigvideo' href="#"><img src={src} alt="bigvideo" /></a>
+                <Link className='videonews__bigvideo' to={path + id}><img src={src} alt="bigvideo" /></Link>
                 <div className="videonews__date">{videodate}</div>
-                <a className="videonews__descr" href="#">{videodescr}</a>
+                <Link className="videonews__descr" to={path + id}>{videodescr}</Link>
               </div>
             )
           })
@@ -28,23 +29,22 @@ const SectionVideo = ({bigVideo, videoData}) => {
       <div className="videonews__fourvideo">
     
         {
-          videoData.map(({src, videodate, videodescr, id}) => {
+          videoData.map(({src, videodate, videodescr, path, id}) => {
             return(
               <div key={id} className="videonews__item">
-                <a className='videonews__linkimg' href="#"><img src={src} alt="men" /></a>
+                <Link className='videonews__linkimg' to={path + id}><img src={src} alt="men" /></Link>
                 <div className="videonews__itemdate">{videodate}</div>
-                <a className='videonews__linkdesc' href="#"><div className="videonews__lessdescr">{videodescr}
+                <Link className='videonews__linkdesc' to={path + id}><div className="videonews__lessdescr">{videodescr}
                 </div>
-                </a>
+                </Link>
             </div>
             )
           })
         }
+   </div>
   </div>
-
-</div>
-      </div>
-    </section>
+ </div>
+</section>
   )
 }
 export default SectionVideo;

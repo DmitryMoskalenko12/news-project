@@ -1,9 +1,11 @@
 .pagin {
+  position: relative;
   padding: 24px 32px 32px;
   width: 976px;
   min-height: 978px;
   background: #FFFFFF;
   border-radius: 12px;
+  margin: 0 auto;
   &__title {
     font-weight: 700;
     font-size: 32px;
@@ -15,6 +17,7 @@
     grid-template-rows: repeat(2, minmax(280px, auto));
     grid-auto-rows: minmax(280px, auto);
     gap: 32px;
+    margin-top: 20px;
   }
   &__block {
     width: 100%;
@@ -46,11 +49,15 @@
     margin-top: 10px;
   }
   &__butwrap {
-    margin-top: 60px;
+    position: absolute;
+    bottom: 200px;
+    left: 30%;
+    /* margin-top: 60px; */
     min-width: 400px;
     display: flex;
     justify-content: center;
     align-items: center;
+
     
   }
   &__prev, &__next {
@@ -75,5 +82,12 @@
 
 }
 .disabled {
-  
+  border: 1px solid #979EA9;
+  border-radius: 100%;
+  background: transparent;
+}
+.spinner {
+  position: absolute;
+  left: 50%;
+  top: 40%;
 }

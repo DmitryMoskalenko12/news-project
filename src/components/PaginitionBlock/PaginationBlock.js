@@ -33,7 +33,9 @@ const pageCount = (total, limit) => {
   return Math.ceil(total / limit)
 }
 
-const pageNumber = pageCount(total, limit);
+const pageNumber = useMemo(() => {
+ return pageCount(total, limit);
+},[total, limit]) 
 
 const count = []
 
@@ -75,36 +77,41 @@ const count = []
     setPage(arrBut[3] - 2)
   }
   setArrBut(tempNumberOfPages)
-},[page, count])
+
+},[page, pageNumber])
+
+const content = !(loading || error) ?  dataPolit.map(({content, date, src, id}) => {
+                                      return (
+                                        <div key={id} className="pagin__block">
+                                          <div className="pagin__imgwrap">
+                                            <a href="#"><img src={src} alt="test" /></a>
+                                          </div>
+                                          <div className="pagin__date">{date}</div>
+                                          <div className="pagin__descr"><a href="#">{content}</a></div>
+                                      </div>
+                                      )
+                                    }) : null
+const spinner = loading ? <div className='spinner'>Завантаження...</div>: null
+const fail = error ? <div className='spinner'>'Помилка завантаження'</div>: null
 
   return(
     <div className='pagin'>
-      <div className="pagin__title">Всі новини про політику</div>
-      <div className="pagin__wrapcontent">
-
-      {
-        dataPolit.map(({content, date, src, id}) => {
-          return (
-            <div key={id} className="pagin__block">
-              <div className="pagin__imgwrap">
-                <a href="#"><img src={src} alt="test" /></a>
-              </div>
-              <div className="pagin__date">{date}</div>
-              <div className="pagin__descr"><a href="#">{content}</a></div>
-           </div>
-          )
-        })
-      }
-  
-      </div>
-      <div className="pagin__butwrap">
-        <button onClick={() => {setPage(page =>  page === 1 ? page : page - 1 )}}  className="pagin__prev">&lt;</button>
+      <div className="pagin__flex">
+       <div className="pagin__title">Всі новини про політику</div>
+        <div className="pagin__wrapcontent">
+              {content}
+              {spinner}
+              {fail}
+        </div>
+        <div className="pagin__butwrap">
+        <button onClick={() => {setPage(page =>  page === 1 ? page : page - 1 )}}  className={page === 1 ? "pagin__prev disabled": "pagin__prev"}>&lt;</button>
         {
           arrBut.map((num,i) => {
             return <button style={{color: num == page ? 'orange' : ''}} onClick={() => {setPage(num); getData()}} key={i} className="pagin__but">{num}</button>
           })
         }
-         <button  onClick={() => {setPage(page => page === count.length ? page : page + 1)}} className="pagin__next">&gt;</button>
+         <button  onClick={() => {setPage(page => page === count.length ? page : page + 1)}} className={page === count.length ? "pagin__prev disabled": "pagin__prev"}>&gt;</button>
+      </div>
       </div>
     </div>
   )

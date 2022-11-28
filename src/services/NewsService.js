@@ -2,6 +2,14 @@ import axios from "axios";
 
 const useNewsService = () => {
   
+  const getBigVideoId = async (id) => {
+    const result = await axios.get(`http://localhost:3001/bigVideo/${id}`)
+    return result.data
+  }
+  const getFourVideoId = async (id) => {
+    const result = await axios.get(`http://localhost:3001/videoNews/${id}`)
+    return result.data
+  }
   const getPaginationPolit = async (limit, page) => {
     const result = await axios.get(`http://localhost:3001/paginationData?_limit=${limit}&_page=${page}`)
     return result
@@ -159,7 +167,9 @@ const useNewsService = () => {
     getLifeBlock2,
     getLifeTwoNews,
     getSingleArticl,
-    getPaginationPolit
+    getPaginationPolit,
+    getBigVideoId,
+    getFourVideoId
   }
 }
 export default useNewsService;
