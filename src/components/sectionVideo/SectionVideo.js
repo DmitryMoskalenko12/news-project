@@ -9,7 +9,7 @@ const SectionVideo = ({bigVideo, videoData}) => {
       <div className="videonews__overflow"></div>
       <div className="container">
 
-      <a className='videonews__link' href="#">Більше новин <span><img src={white} alt="arrow" /></span></a>
+      <Link className='videonews__link' to={'/videoPage'}>Більше новин <span><img src={white} alt="arrow" /></span></Link>
 
       <div className="videonews__wrap">
 

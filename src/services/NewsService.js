@@ -1,7 +1,10 @@
 import axios from "axios";
 
 const useNewsService = () => {
-  
+  const getDataBaseVideo = async (limit, page) => {
+    const result = await axios.get(`http://localhost:3001/videoIdBase?_limit=${limit}&_page=${page}`)
+    return result.data
+  }
   const getBigVideoId = async (id) => {
     const result = await axios.get(`http://localhost:3001/bigVideo/${id}`)
     return result.data
@@ -169,7 +172,8 @@ const useNewsService = () => {
     getSingleArticl,
     getPaginationPolit,
     getBigVideoId,
-    getFourVideoId
+    getFourVideoId,
+    getDataBaseVideo
   }
 }
 export default useNewsService;

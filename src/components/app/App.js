@@ -14,6 +14,7 @@ function App() {
   const ViewsPage = lazy(() => import('../../pages/ViewsPage'));
   const WorldPage = lazy(() => import('../../pages/WorldPage'));
   const VideoPage = lazy(() => import('../videoPage/VideoPage'));
+  const MoreVideoNews = lazy(() => import('../moreVideoNews/MoreVideoNews'));
 
   return (
   <Suspense fallback = { <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '300px'}}>Завантаження...</div> }>
@@ -22,6 +23,7 @@ function App() {
           <Route path = '/' element = {<StartPage/>}/>
           <Route path = '/:id' element = {<Articl/>}/>
           <Route path = '/video/:idvideo' element = {<VideoPage/>}/>
+          <Route path='/videoPage' element = {<MoreVideoNews/>}/>
 
           <Route path = '/NewsPage' element = {<NewsPage/>}/>
           <Route path = '/PolitPage' element = {<PolitPage/>}/>

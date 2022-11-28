@@ -83,7 +83,7 @@ const Header = () =>{
           {
             button.map(({content, path, id}, i) => {
               return(
-                <li  key={id} onClick={() => setActive(id)} className={`header__li ${active === i + 1 ? 'activeli' : null }`}><NavLink end to={path}>{content}</NavLink></li>
+                <li  key={id} onClick={() => setActive(id)} className={`header__li ${active === i + 1 ? 'activeli' : null }`}><NavLink to={path}>{content}</NavLink></li>
               )
             })
           }
