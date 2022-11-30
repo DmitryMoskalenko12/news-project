@@ -4,6 +4,7 @@ import Footer from '../../footer/Footer';
 import YouTube from 'react-youtube';
 import useNewsService from '../../services/NewsService';
 import { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet';
 
 const MoreVideoNews = () => {
   const [videoBase, setVideoBase] = useState([]);
@@ -19,7 +20,7 @@ const MoreVideoNews = () => {
     .then((res) => {
       if (res.length <= 0) {
         setEndedVideo(true)
-
+        setFetching(false)
       }
      setVideoBase([...videoBase, ...res])
      setVideoPage(videoPage => videoPage + 1)
@@ -31,7 +32,7 @@ const MoreVideoNews = () => {
 
   useEffect(() => {
    window.addEventListener('scroll', () => scrollEnd())
-   return window.removeEventListener('scroll', () => scrollEnd())
+   return () => window.removeEventListener('scroll', () => scrollEnd())
   },[])
 
 const scrollEnd = () => {
@@ -48,6 +49,13 @@ const optional = {
 }  
   return(
     <>
+    <Helmet>
+      <meta
+        name="description"
+        content="Page with All video"
+      />
+      <title>Всі відео</title>
+    </Helmet>
     <Header/>
     <div className="morevideo">
       <div className="morevideo__wrap">
