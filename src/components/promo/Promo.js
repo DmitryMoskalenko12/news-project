@@ -1,7 +1,8 @@
 import './promo.scss';
 import rupor from '../../icons/Vector.png';
+import { forwardRef } from 'react';
 
-const Promo = ({ onPromoNext, promooffset, promoWidth, promosliders, setPromoSliders, promoDescr}) => {
+const Promo = forwardRef(({ onPromoNext, promooffset, promoWidth, promosliders, setPromoSliders, promoDescr}, ref) => {
 
   return(
     <article className="promoarticl">
@@ -29,10 +30,9 @@ const Promo = ({ onPromoNext, promooffset, promoWidth, promosliders, setPromoSli
    }
 
      <div className="promoslider">
-      <div style={{overflow: 'hidden'}} className="promoslider__window">
+      <div ref = {ref} style={{overflow: 'hidden'}} className="promoslider__window">
 
-       <div style={{width: `${100 * (promosliders.length - 3) + '%'}`, transition: '0.7s all', transform: `translateX(-${promooffset}px)`}} className="promoslider__field">
-
+       <div  style={{width: `${100 * (promosliders.length - 3) + '%'}`, transition: '0.7s all', transform: `translateX(-${promooffset}px)`}} className="promoslider__field">
         {
           promosliders.map(({date, descr, path, id}) => {
            return(
@@ -45,12 +45,11 @@ const Promo = ({ onPromoNext, promooffset, promoWidth, promosliders, setPromoSli
            )
           })
         }
-
-        </div>
-        <div  onClick={() => onPromoNext()} className="promoslider__but">&gt;</div>
-      </div>
-     </div>
-    </article>
+    </div>
+    <div  onClick={() => onPromoNext()} className="promoslider__but">&gt;</div>
+  </div>
+</div>
+</article>
   )
-}
+} )
 export default Promo;

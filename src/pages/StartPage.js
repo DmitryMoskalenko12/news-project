@@ -22,14 +22,14 @@ const StartPage = () => {
 /* slider */
   const windowRef = useRef()
   const [ widthSlide, setWidthSlide] = useState(0)
-  
+
   useEffect(() => {
     setWidthSlide(getComputedStyle(windowRef.current).width.replace(/\D/ig, ''))
     getSliders()
    .then((res) => setSliders(res))
    .catch((e) => console.log(e))
   },[])
-  const {onNext, onPrev, slideIndex, setSlideIndex, setOffset, offset, widt, sliders, setSliders, onPromoNext, promooffset, promoWidth, promosliders, setPromoSliders} = useSlider(1, 0, +widthSlide);
+  
   
 /* redactionSection */
 const [data, setData] = useState([]);
@@ -102,8 +102,12 @@ useEffect(() => {
 },[])
 
 /* promoSlider */
+const promoRef = useRef();
 const [promoDescr, setPromoDescr] = useState([]);
-
+const [promoWidth, setPromoWidth] = useState(0);
+useEffect(() => {
+  setPromoWidth(getComputedStyle(promoRef.current).width.replace(/\D/ig, ''))
+},[])
 useEffect(() => {
  getPromoDescr()
  .then((res) => setPromoDescr(res))
@@ -114,6 +118,7 @@ useEffect(() => {
  .catch((e) => console.log(e))
 },[])
 
+const {onNext, onPrev, slideIndex, setSlideIndex, setOffset, offset, widt, sliders, setSliders, onPromoNext, promooffset, promosliders, setPromoSliders} = useSlider(1, 0, +widthSlide, +promoWidth);
 /* economic block */
 const [ecomomicBlock1, setEconomicBlock1] = useState([]);
 const [economicBlock2, setEconomicBlock2] = useState([]);
@@ -179,7 +184,7 @@ useEffect(() => {
       </section>
        <section className='promo'>
         <div className="promocolumn">
-        <Promo  onPromoNext = {onPromoNext} promooffset = {promooffset} promoWidth = {promoWidth} promosliders = {promosliders} setPromoSliders ={setPromoSliders} promoDescr = {promoDescr}/>
+        <Promo ref = {promoRef} onPromoNext = {onPromoNext} promooffset = {promooffset} promosliders = {promosliders} setPromoSliders ={setPromoSliders} promoDescr = {promoDescr}/>
         <NewsBlock  block1 = {ecomomicBlock1} block2 = {economicBlock2} twonews = {economicTwonews}/>
         <NewsBlock  block1 = {lifeBlock1} block2 = {lifeBlock2} twonews = {lifeTwonews}/>
         </div>

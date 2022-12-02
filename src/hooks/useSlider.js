@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const useSlider = (index, offs, widt) => {
+export const useSlider = (index, offs, widt, promoWidth) => {
   
   const [slideIndex, setSlideIndex] = useState(index);
   const [offset, setOffset] = useState(offs);
@@ -8,7 +8,7 @@ export const useSlider = (index, offs, widt) => {
   const [sliders, setSliders] = useState([])
   const [promosliders, setPromoSliders] = useState([]);
   const [promooffset, setPromoOffset] = useState(0);
-  const [promoWidth, setPromoWidth] = useState(285);
+  /* const [promoWidth, setPromoWidth] = useState(285); */
   const onNext = () => {
 
     if (offset == widt * (sliders.length - 1)) {
@@ -42,11 +42,11 @@ export const useSlider = (index, offs, widt) => {
 
   const onPromoNext = () => {
 
-    if (promooffset == promoWidth * (promosliders.length - 3)) {
+    if (promooffset == /* promoWidth */ 285 * (promosliders.length - 3)) {
       setPromoOffset(0)
     } else {
-      setPromoOffset( promooffset => promooffset += promoWidth)
+      setPromoOffset( promooffset => promooffset += /* promoWidth */ 285)
     }
   }
-  return{onNext, onPrev, slideIndex, setSlideIndex, setOffset, offset, widt, sliders, setSliders, onPromoNext, promooffset, promoWidth, promosliders, setPromoSliders }
+  return{onNext, onPrev, slideIndex, setSlideIndex, setOffset, offset, widt, sliders, setSliders, onPromoNext, promooffset, promosliders, setPromoSliders }
 }
