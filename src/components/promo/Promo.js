@@ -2,7 +2,7 @@ import './promo.scss';
 import rupor from '../../icons/Vector.png';
 import { forwardRef } from 'react';
 
-const Promo = forwardRef(({ onPromoNext, promooffset, promoWidth, promosliders, setPromoSliders, promoDescr}, ref) => {
+const Promo = forwardRef(({ onPromoNext, promooffset,onPromoPrev, promoWidth, promosliders, setPromoSliders, promoDescr}, ref) => {
 
   return(
     <article className="promoarticl">
@@ -29,9 +29,11 @@ const Promo = forwardRef(({ onPromoNext, promooffset, promoWidth, promosliders, 
     })
    }
 
-     <div className="promoslider">
-      <div ref = {ref} style={{overflow: 'hidden'}} className="promoslider__window">
-
+    <div className="promoslider">
+     <div ref = {ref} style={{overflow: 'hidden'}} className="promoslider__window">
+      {
+        promooffset > 0 ? <div  onClick={() => onPromoPrev()} className="promoslider__but promoslider__but-left ">&lt;</div> : null
+      }
        <div  style={{width: `${100 * (promosliders.length - 3) + '%'}`, transition: '0.7s all', transform: `translateX(-${promooffset}px)`}} className="promoslider__field">
         {
           promosliders.map(({date, descr, path, id}) => {

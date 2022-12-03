@@ -118,4 +118,21 @@
     cursor: pointer;
     z-index: 10;
   }
+  &__but-left {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.16);
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.24);
+    border-radius: 88px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    font-size: 20px;
+    left: 10px;
+    top: 60px;
+    cursor: pointer;
+    z-index: 10;
+  }
 }

@@ -48,5 +48,14 @@ export const useSlider = (index, offs, widt, promoWidth) => {
       setPromoOffset( promooffset => promooffset += /* promoWidth */ 285)
     }
   }
-  return{onNext, onPrev, slideIndex, setSlideIndex, setOffset, offset, widt, sliders, setSliders, onPromoNext, promooffset, promosliders, setPromoSliders }
+
+  const onPromoPrev = () => {
+
+    if (promooffset == /* promoWidth */ 0) {
+      setPromoOffset(285 * (promosliders.length - 3))
+    } else {
+      setPromoOffset( promooffset => promooffset -= /* promoWidth */ 285)
+    }
+  }
+  return{onNext, onPrev, slideIndex, setSlideIndex, setOffset, offset, widt, sliders, setSliders, onPromoNext, promooffset, promosliders, setPromoSliders, onPromoPrev }
 }
