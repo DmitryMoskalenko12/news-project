@@ -32,7 +32,7 @@ const Promo = forwardRef(({ onPromoNext, promooffset,onPromoPrev, promoWidth, pr
     <div className="promoslider">
      <div ref = {ref} style={{overflow: 'hidden'}} className="promoslider__window">
       <div className="promoslider__linear"></div>
-      <div className="promoslider__linear-left"></div>
+      {/* <div className="promoslider__linear-left"></div> */}
       {
         promooffset > 0 ? <div  onClick={() => onPromoPrev()} className="promoslider__but promoslider__but-left ">&lt;</div> : null
       }
