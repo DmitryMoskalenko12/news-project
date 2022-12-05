@@ -12,6 +12,7 @@ import Promo from '../components/promo/Promo';
 import Footer from '../footer/Footer';
 import NewsSection from '../components/newsSection/NewsSection';
 import {Helmet} from "react-helmet";
+import ErrorBoundary from '../components/errorBoundary/ErrorBoundary';
 
 const StartPage = () => {
 
@@ -167,30 +168,53 @@ useEffect(() => {
       </Helmet>
 
       <Header/>
-      <SectionSlider onNext = {onNext} onPrev = {onPrev} slideIndex = {slideIndex} setSlideIndex = {setSlideIndex} setOffset = {setOffset} offset = {offset} width = {widt} sliders = {sliders} setSliders = {setSliders} ref = {windowRef}/>
+      
+      <ErrorBoundary>
+        <SectionSlider onNext = {onNext} onPrev = {onPrev} slideIndex = {slideIndex} setSlideIndex = {setSlideIndex} setOffset = {setOffset} offset = {offset} width = {widt} sliders = {sliders} setSliders = {setSliders} ref = {windowRef}/>
+      </ErrorBoundary>
        <div className='newswrap'>
-        <NewsSection getAllNews= {getAllNews} getArticl = {getArticl} getNews = {getNews}/>
+        <ErrorBoundary>
+         <NewsSection getAllNews= {getAllNews} getArticl = {getArticl} getNews = {getNews}/>
+        </ErrorBoundary>
        <div className='regandredac'>
-       <Redaction data = {data}/>
-       <RegionalNews dataRegional = {dataRegional}/>
+       <ErrorBoundary>
+        <Redaction data = {data}/>
+       </ErrorBoundary>
+       <ErrorBoundary>
+        <RegionalNews dataRegional = {dataRegional}/>
+       </ErrorBoundary>
        </div>
       </div>
-      <SectionVideo videoData = {videoData} bigVideo = { bigVideo}/>
+      <ErrorBoundary>
+       <SectionVideo videoData = {videoData} bigVideo = { bigVideo}/>
+      </ErrorBoundary>
       <section className="colpolit">
           <div className="flextwosection">
-          <AuthorColon authorData = {authorData} pageColon =  {pageColon} setPageColon = {setPageColon} authorEnded = {authorEnded} authorLoading = {authorLoading} authorError = {authorError}/>
-          <NewsBlock block1 = {block1} block2 = {block2} twonews = {twonews}/>
+         <ErrorBoundary>
+         <AuthorColon authorData = {authorData} pageColon =  {pageColon} setPageColon = {setPageColon} authorEnded = {authorEnded} authorLoading = {authorLoading} authorError = {authorError}/>
+         </ErrorBoundary>
+          <ErrorBoundary>
+           <NewsBlock block1 = {block1} block2 = {block2} twonews = {twonews}/>
+          </ErrorBoundary>
           </div>
       </section>
        <section className='promo'>
         <div className="promocolumn">
+       <ErrorBoundary>
         <Promo ref = {promoRef} onPromoPrev = {onPromoPrev} onPromoNext = {onPromoNext} promooffset = {promooffset} promosliders = {promosliders} setPromoSliders ={setPromoSliders} promoDescr = {promoDescr}/>
-        <NewsBlock  block1 = {ecomomicBlock1} block2 = {economicBlock2} twonews = {economicTwonews}/>
-        <NewsBlock  block1 = {lifeBlock1} block2 = {lifeBlock2} twonews = {lifeTwonews}/>
+       </ErrorBoundary>
+        <ErrorBoundary>
+          <NewsBlock  block1 = {ecomomicBlock1} block2 = {economicBlock2} twonews = {economicTwonews}/>
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <NewsBlock  block1 = {lifeBlock1} block2 = {lifeBlock2} twonews = {lifeTwonews}/>
+        </ErrorBoundary>
         </div>
          
        </section>
-       <Footer/>
+       <ErrorBoundary>
+        <Footer/>
+       </ErrorBoundary>
 
      </>
     )
