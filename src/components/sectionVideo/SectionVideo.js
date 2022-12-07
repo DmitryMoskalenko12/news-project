@@ -48,3 +48,4 @@ const SectionVideo = ({bigVideo, videoData}) => {
   )
 }
 export default SectionVideo;
+
