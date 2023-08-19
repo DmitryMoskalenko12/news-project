@@ -23,7 +23,7 @@ setVideoFour(res2)
 
 const optional = {
   height: '500',
-  width: '1345',
+  width: '100%',
   playerVars: {
     autoplay: 2,
   },

@@ -45,6 +45,11 @@
       }
      }
   }
+
+  &__main {
+    position: relative;
+  }
+
   &__wrap {
     display: grid;
     grid-template-columns: repeat(2, 589px);
@@ -155,4 +160,12 @@
     margin-top: 8px;
   }
   
+}
+
+@media (max-width: 1358px) {
+  .videonews {
+    &__link {
+      right: 15px;
+    }
+  }
 }
