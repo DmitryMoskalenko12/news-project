@@ -20,19 +20,30 @@
   &__all {
     margin-bottom: 24px;
     a {
+      transition: 1s all;
       font-weight: 600;
       font-size: 16px;
       color: #2D2D2D;
       text-decoration: none;
+      &:hover {
+        transition: 1s all;
+        color: orange;
+      }
     }
   }
   &__covid {
     margin-bottom: 24px;
+    transition: 1s all;
     a {
+      transition: 1s all;
       font-weight: 600;
       font-size: 16px;
       color: #2D2D2D;
       text-decoration: none;
+      &:hover {
+        transition: 1s all;
+        color: orange;
+      }
     }
   }
   &__politic, &__allnews, &__health, &__event, &__lifestyle, &__socio, &__region, &__tehcno, &__economic, &__sport, &__about {
@@ -47,10 +58,15 @@
   }
   &__item {
     a {
+    transition: 1s all;
     font-weight: 400;
     font-size: 14px;
     color: #515151;
     text-decoration: none;
+    &:hover {
+      transition: 1s all;
+      color: orange;
+    }
     }
     margin-top: 8px;
   }
@@ -61,11 +77,16 @@
   &__itemabout {
     margin-bottom: 24px;
     a {
+      transition: 1s all;
       font-weight: 600;
       font-size: 16px;
       text-transform: uppercase;
       color: #2D2D2D;
       text-decoration: none;
+      &:hover {
+        transition: 1s all;
+        color: orange;
+      }
     }
   }
   &__title {

@@ -75,6 +75,7 @@
     height: 360px;
     text-decoration: none;
     margin-top: 24px;
+    transition: 1s all;
     &:before {
       content: url('../../icons/bigplay.png');
       position: absolute;
@@ -82,7 +83,7 @@
       left: 5px;
     }
     &:hover {
-      transform: scale(110%);
+      transform: scale(105%);
       /* box-shadow: 5px 5px 20px orange; */
       transition: 1s all;
     }
@@ -125,6 +126,7 @@
     width: 280px;
     height: 170px;
     position: relative;
+    transition: 1s all;
     &:before {
       content: url('../../icons/play.png');
       position: absolute;
@@ -132,7 +134,7 @@
       left: 5px;
     }
     &:hover {
-      transform: scale(110%);
+      transform: scale(105%);
      /*  box-shadow: 5px 5px 20px orange; */
       transition: 1s all;
     }
