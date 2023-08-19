@@ -8,20 +8,17 @@ import Footer from '../../footer/Footer';
 import { Helmet } from 'react-helmet';
 
 const VideoPage = () => {
-const [video, setVideo] = useState({});
-
+const [videoBig, setVideoBig] = useState({});
+const [fourVideo, setVideoFour] = useState({});
+const {idvideo} = useParams();
 const {getBigVideoId, getFourVideoId} = useNewsService();
 
-const {idvideo} = useParams();
-
 useEffect(() => {
-getBigVideoId(idvideo)
-.then((res) => setVideo(res))
-.catch((e) => console.log(e))
+const res = getBigVideoId(+idvideo);
+setVideoBig(res)
 
-getFourVideoId(idvideo)
-.then((res) => setVideo(res))
-.catch((e) => console.log(e))
+const res2 = getFourVideoId(+idvideo);
+setVideoFour(res2)
 },[])
 
 const optional = {
@@ -36,8 +33,6 @@ const optional = {
   event.target.pauseVideo();
 } */
 
-const {videoid} = video;
-
   return(
      <>
       <Helmet>
@@ -49,7 +44,7 @@ const {videoid} = video;
       </Helmet>
 
      {<Header/>}
-     {<YouTube videoId={videoid} opts={optional} /* onReady={this._onReady} */ onPause={true}/>}
+     {<YouTube videoId={videoBig?.videoid || fourVideo?.videoid} opts={optional} /* onReady={this._onReady} */ onPause={true}/>}
      {<Footer/>}
     
      </>

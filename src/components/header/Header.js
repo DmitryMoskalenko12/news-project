@@ -9,8 +9,28 @@ import { useState, useEffect } from 'react';
 import { useHttp } from '../../hooks/http.hook';
 import { NavLink } from 'react-router-dom';
 
-const Header = () =>{
+const Header = () => {
   
+  const statistic = [
+    {"src": "./icons/air.png", "alt": "air", "descr": "особовий склад", "num":"~36 200", "id": 1 },
+    {"src": "./icons/tanks.png", "alt": "tanks", "descr": "танки", "num":"1 589", "id": 2 },
+    {"src": "./icons/art.png", "alt": "art", "descr": "артсистеми", "num":"4578", "id": 3 },
+    {"src": "./icons/air.png", "alt": "air", "descr": "літаки", "num":"220", "id": 4 },
+    {"src": "./icons/rocket.png", "alt": "rocket", "descr": "РСЗВ", "num":"246", "id": 5 },
+    {"src": "./icons/gelic.png", "alt": "gelic", "descr": "гелікоптери", "num":"190", "id": 6 },
+    {"src": "./icons/bbm.png", "alt": "bbm", "descr": "ББМ", "num":"4578", "id": 7 }
+  ]
+
+  const buttons = [
+    {"content": "війна", "href": "#","path":"/", "id": 1 },
+    {"content": "новини", "href": "#", "path":"/NewsPage", "id": 2 },
+    {"content": "політика", "href": "#","path":"/PolitPage", "id": 3 },
+    {"content": "економіка", "href": "#","path":"/EconomPage", "id": 4 },
+    {"content": "суспільство", "href": "#","path":"/SocPage", "id": 5 },
+    {"content": "погляди", "href": "#","path":"/ViewsPage", "id": 6 },
+    {"content": "світ", "href": "#","path":"/WorldPage", "id": 7 }
+  ]
+
   const [menu, setMenu] = useState(false);
   const [button, setButton] = useState([]);
   const [stata, setStata] = useState([])
@@ -18,15 +38,11 @@ const Header = () =>{
   const {request} = useHttp();
 
   useEffect(() => {
-  request('http://localhost:3001/statistic')
-  .then((res) => setStata(res))
-  .catch((e) => console.log(e))
+   setStata(statistic);
   },[])
 
   useEffect(() => {
-  request('http://localhost:3001/button')
-  .then((res) => setButton(res))
-  .catch((e) => console.log(e))
+  setButton(buttons);
   },[])
 
   return(

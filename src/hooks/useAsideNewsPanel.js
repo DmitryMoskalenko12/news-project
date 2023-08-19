@@ -3,15 +3,15 @@ const useAsideNewsPanel = () => {
   const setDataNews = (data, limit, page, setData, method, setEnded, setLoading, setError) => {
 
     setLoading(true)
-    method(limit, page)
-    .then((res) => {
+    const res = method(limit, page)
       if (res.length < 10) {
         setEnded(true)
       }
       setData([...data, ...res]);
       setLoading(false)
-    })
-    .catch(() => setError(true))
+    if (!res) {
+      setError(true)
+    }
 }
 
 return {setDataNews}

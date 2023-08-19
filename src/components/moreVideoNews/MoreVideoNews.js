@@ -16,17 +16,14 @@ const MoreVideoNews = () => {
 
   useEffect(() => {
   if (fetching) {
-    getDataBaseVideo(videoLimit, videoPage)
-    .then((res) => {
+    const res = getDataBaseVideo(videoLimit, videoPage)
       if (res.length <= 0) {
         setEndedVideo(true)
         setFetching(false)
       }
      setVideoBase([...videoBase, ...res])
      setVideoPage(videoPage => videoPage + 1)
-   })
-    .catch((e) => console.log(e))
-    .finally(() => setFetching(false))
+     setFetching(false)
   }
   },[fetching])
 

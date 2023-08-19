@@ -1,6 +1,7 @@
 import './paginationBlock.scss';
 import useNewsService from '../../services/NewsService';
 import { useState, useEffect, useMemo } from 'react';
+import { paginationData } from '../../dummy data/dummy-data';
 
 const PaginationBlock = () => {
 
@@ -16,13 +17,14 @@ const {getPaginationPolit} = useNewsService();
 
 const getData = () => {
   setLoading(true)
-  getPaginationPolit(limit, page)
-  .then((res) => {
-   setDataPolit(res.data)
-   setTotal(res.headers['x-total-count'])
-   setLoading(false)
-  })
-  .catch(() => setError(true))
+  const res = getPaginationPolit(limit, page)
+  setDataPolit(res)
+  setTotal(paginationData.length)
+  setLoading(false)
+}
+
+if (!dataPolit) {
+  setError(true)
 }
 
 useEffect(() => {

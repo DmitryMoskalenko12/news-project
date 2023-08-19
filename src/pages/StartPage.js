@@ -26,9 +26,8 @@ const StartPage = () => {
 
   useEffect(() => {
     setWidthSlide(getComputedStyle(windowRef.current).width.replace(/\D/ig, ''))
-    getSliders()
-   .then((res) => setSliders(res))
-   .catch((e) => console.log(e))
+    const res = getSliders();
+    setSliders(res);
   },[])
   
   
@@ -36,16 +35,16 @@ const StartPage = () => {
 const [data, setData] = useState([]);
 
 useEffect(() => {
-  getRedaction()
-  .then((res) => setData(res))
+  const res = getRedaction()
+  setData(res)
 },[])
 
 /* regionalnews */
 const [dataRegional, setDataRegional] = useState([]);
 
 useEffect(() => {
-  getRegionNews()
-  .then((res) => setDataRegional(res))
+  const res = getRegionNews();
+  setDataRegional(res)
 },[])
 
 /* videonews */
@@ -53,13 +52,11 @@ const [videoData, setVideoData] = useState([]);
 const [bigVideo, setBigVideo] = useState([]);
 
 useEffect(() => {
-  getVideoNews()
-  .then((res) => setVideoData(res))
-  .catch((e) => console.log(e))
+  const res = getVideoNews();
+  setVideoData(res);
 
-  getBigVideo()
-  .then((res) => setBigVideo(res))
-  .catch((e) => console.log(e))
+  const res2 = getBigVideo()
+  setBigVideo(res2)
 },[])
 
 /* authorColon */
@@ -72,15 +69,19 @@ const [authorError, setAuthorError] = useState(false);
 
 useEffect(() => {
   setAuthorLoading(true)
-  getColonAuthor(limitColon, pageColon)
-  .then((res) => {
+   const res = getColonAuthor(limitColon, pageColon);
+
     if (res.length < 4) {
       setAuthorEnded(true)
     }
+
    setAuthorData([...authorData, ...res]);
    setAuthorLoading(false)
-  })
-  .catch(() => setAuthorError(true))
+
+    if (!res) {
+      setAuthorError(true)
+    }
+
 },[pageColon])
 
 /* newsblock */
@@ -89,34 +90,35 @@ const [block2, setBlock2] = useState([]);
 const [twonews, setTwoNews] = useState([]);
 
 useEffect(() => {
- getBlock1()
- .then((res) => setBlock1(res))
- .catch((e) => console.log(e))
+ const res1 = getBlock1()
+ setBlock1(res1)
+ 
 
- getBlock2()
- .then((res) => setBlock2(res))
- .catch((e) => console.log(e))
+ const res2 = getBlock2()
+ setBlock2(res2)
+ 
 
- getTwoNews()
- .then((res) => setTwoNews(res))
- .catch((e) => console.log(e))
+ const res3 = getTwoNews()
+ setTwoNews(res3)
+ 
 },[])
 
 /* promoSlider */
 const promoRef = useRef();
 const [promoDescr, setPromoDescr] = useState([]);
 const [promoWidth, setPromoWidth] = useState(0);
+
 useEffect(() => {
   setPromoWidth(getComputedStyle(promoRef.current).width.replace(/\D/ig, ''))
 },[])
-useEffect(() => {
- getPromoDescr()
- .then((res) => setPromoDescr(res))
- .catch((e) => console.log(e))
 
- getPromoSlider()
- .then((res) => setPromoSliders(res))
- .catch((e) => console.log(e))
+useEffect(() => {
+ const res1 = getPromoDescr()
+ setPromoDescr(res1)
+
+ const res2 = getPromoSlider()
+ setPromoSliders(res2)
+
 },[])
 
 const {onNext, onPrev, slideIndex, setSlideIndex, setOffset,onPromoPrev, offset, widt, sliders, setSliders, onPromoNext, promooffset, promosliders, setPromoSliders} = useSlider(1, 0, +widthSlide, +promoWidth);
@@ -126,17 +128,14 @@ const [economicBlock2, setEconomicBlock2] = useState([]);
 const [economicTwonews, setEconomicTwoNews] = useState([]);
 
 useEffect(() => {
-  getEconomicBlock1()
- .then((res) => setEconomicBlock1(res))
- .catch((e) => console.log(e))
+  const res1 = getEconomicBlock1();
+  setEconomicBlock1(res1)
+ 
+  const res2 = getEconomicBlock2();
+  setEconomicBlock2(res2)
 
- getEconomicBlock2()
- .then((res) => setEconomicBlock2(res))
- .catch((e) => console.log(e))
-
- getEconomicTwoNews()
- .then((res) => setEconomicTwoNews(res))
- .catch((e) => console.log(e))
+  const res3 = getEconomicTwoNews();
+  setEconomicTwoNews(res3)
 },[])
 
 /* lifestyle */
@@ -145,17 +144,15 @@ const [lifeBlock2, setLifeBlock2] = useState([]);
 const [lifeTwonews, setLifeTwoNews] = useState([]);
 
 useEffect(() => {
-  getLifeBlock1()
- .then((res) => setLifeBlock1(res))
- .catch((e) => console.log(e))
+  const res1 = getLifeBlock1();
+  setLifeBlock1(res1);
 
- getLifeBlock2()
- .then((res) => setLifeBlock2(res))
- .catch((e) => console.log(e))
+ const res2 = getLifeBlock2();
+ setLifeBlock2(res2);
 
- getLifeTwoNews()
- .then((res) => setLifeTwoNews(res))
- .catch((e) => console.log(e))
+ const res3 = getLifeTwoNews();
+ setLifeTwoNews(res3);
+
 },[])
     return(
       <>

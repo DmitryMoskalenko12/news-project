@@ -12,20 +12,19 @@ const [singleArticl, setSingleArticl] = useState({})
   const {id} = useParams();
 
   useEffect(() => {
-  getSingleArticl(id)
-  .then((res) => setSingleArticl(res))
-  .catch((e) => console.log(e))
+  const res = getSingleArticl(+id)
+  setSingleArticl(res)
+
   },[])
 
-const {content, time} = singleArticl;
 
   return(
     <div>
     <Header/>
     <section className="articlinfo">
       <div className="articlinfo__place">
-        <div>{time}</div>
-        <div>{content}</div>
+        <div>{singleArticl?.time}</div>
+        <div>{singleArticl?.content}</div>
       </div>
     </section>
     <Footer/>
