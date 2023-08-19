@@ -1,6 +1,6 @@
 .videonews {
   min-height: 787px;
-  padding: 56px 64px 112px 10px;
+  padding: 56px 10px 112px 85px;
   position: relative;
   background: url('../../image/usik.png') top center / cover no-repeat;
   z-index: 2;
@@ -51,6 +51,7 @@
     grid-template-rows: minmax(535px, auto);
     grid-auto-rows: minmax(535px, auto);
     column-gap: 20px;
+    justify-content: center;
   }
   &__bigwrap {
     width: 589px;

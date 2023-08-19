@@ -6,6 +6,7 @@ body {
 .newswrap {
   background: #F7F7F7;
   display: flex;
+  justify-content: center;
 
 }
 .regandredac{
@@ -14,7 +15,7 @@ body {
 }
 .colpolit {
   min-height: 991px;
-  padding: 0px 0px 24px 0px;
+  padding: 0px 0px 24px 65px;
   background: #F7F7F7;
 }
 .flextwosection {
@@ -24,7 +25,8 @@ body {
 .promo {
   padding: 24px 64px 32px;
   display: flex;
-  justify-content: right;
+  justify-content: center;
+  padding-left: 435px;
   min-height: 409px;
   border-radius: 12px;
   background: #F7F7F7;

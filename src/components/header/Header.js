@@ -12,13 +12,13 @@ import { NavLink } from 'react-router-dom';
 const Header = () => {
   
   const statistic = [
-    {"src": "./icons/air.png", "alt": "air", "descr": "особовий склад", "num":"~36 200", "id": 1 },
-    {"src": "./icons/tanks.png", "alt": "tanks", "descr": "танки", "num":"1 589", "id": 2 },
-    {"src": "./icons/art.png", "alt": "art", "descr": "артсистеми", "num":"4578", "id": 3 },
-    {"src": "./icons/air.png", "alt": "air", "descr": "літаки", "num":"220", "id": 4 },
-    {"src": "./icons/rocket.png", "alt": "rocket", "descr": "РСЗВ", "num":"246", "id": 5 },
-    {"src": "./icons/gelic.png", "alt": "gelic", "descr": "гелікоптери", "num":"190", "id": 6 },
-    {"src": "./icons/bbm.png", "alt": "bbm", "descr": "ББМ", "num":"4578", "id": 7 }
+    {"src": "../icons/air.png", "alt": "air", "descr": "особовий склад", "num":"~36 200", "id": 1 },
+    {"src": "../icons/tanks.png", "alt": "tanks", "descr": "танки", "num":"1 589", "id": 2 },
+    {"src": "../icons/art.png", "alt": "art", "descr": "артсистеми", "num":"4578", "id": 3 },
+    {"src": "../icons/air.png", "alt": "air", "descr": "літаки", "num":"220", "id": 4 },
+    {"src": "../icons/rocket.png", "alt": "rocket", "descr": "РСЗВ", "num":"246", "id": 5 },
+    {"src": "../icons/gelic.png", "alt": "gelic", "descr": "гелікоптери", "num":"190", "id": 6 },
+    {"src": "../icons/bbm.png", "alt": "bbm", "descr": "ББМ", "num":"4578", "id": 7 }
   ]
 
   const buttons = [
